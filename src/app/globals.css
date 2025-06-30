@@ -1,0 +1,164 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --primary: #076a60;
+  --primary-foreground: #ffffff;
+  --secondary: #076a6012;
+  --secondary-foreground: #0f172a;
+  --muted: #f8fafc;
+  --muted-foreground: #ffffff0a;
+  --accent: #076a6012;
+  --accent-foreground: #0f172a;
+  --border: #076a600d;
+  --input: #e2e8f0;
+  --ring: #076a60;
+  --radius: 0.5rem;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --font-sans: var(--font-petrona);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+    --primary: #076a60;
+    --primary-foreground: #ffffff;
+    --secondary: #076a6012;
+    --secondary-foreground: #f8fafc;
+    --muted: #1e293b;
+    --muted-foreground: #94a3b8;
+    --accent: #076a6012;
+    --accent-foreground: #f8fafc;
+    --border: #076a600d;
+    --input: #334155;
+    --ring: #076a60;
+  }
+}
+
+.container {
+  margin: auto;
+}
+
+a {
+  text-decoration:none
+}
+
+header {
+  border-color: var(--border);
+}
+
+body {
+  background: var(--background);
+  background-image: linear-gradient(90deg, var(--border) 1px, transparent 1px),
+    radial-gradient(circle at 25% 25%, var(--primary) 2px, transparent 2px),
+    radial-gradient(circle at 75% 75%, var(--primary) 1px, transparent 1px);
+  background-size: 145px 100%, 800px 800px, 600px 600px;
+  background-position: 0 0, 0 0, 0 0;
+  color: var(--foreground);
+  font-family: var(--font-petrona), system-ui, sans-serif;
+  line-height: 1.6;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Focus styles */
+*:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+/* Selection styles */
+::selection {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+}
+
+.logo-container::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 33px;
+  bottom: 40px;
+  left: 0;
+  background-color: var(--background);
+  background-color: color-mix(in srgb, var(--background) 95%, transparent);
+  border-bottom: 1px solid var(--border);
+  z-index: -1;
+  backdrop-filter: blur(1px);
+  -webkit-backdrop-filter: blur(1px);
+  pointer-events: none;
+}
+
+p {
+  font-family: var(--font-inter), system-ui, sans-serif;
+}
+
+/* Skew fix for HeroSection cards */
+.card-skew-fix-tl::after {
+  content: "";
+  width: 110%;
+  height: 85px;
+  background: #fff;
+  position: absolute;
+  left: 50%;
+  bottom: -40px;
+  transform: translateX(-50%) skewY(19deg);
+  pointer-events: none;
+  z-index: -1;
+}
+.card-skew-fix-tr::after {
+  content: "";
+  width: 110%;
+  height: 85px;
+  background: #fff;
+  position: absolute;
+  left: 50%;
+  bottom: -40px;
+  transform: translateX(-50%) skewY(160deg);
+  pointer-events: none;
+  z-index: -1;
+}
+.card-skew-fix-bl::after {
+  content: "";
+  width: 110%;
+  height: 95px;
+  background: #fff;
+  position: absolute;
+  left: 50%;
+  top: -48px;
+  transform: translateX(-50%) skewY(160deg);
+  pointer-events: none;
+  z-index: -1;
+}
+.card-skew-fix-br::after {
+  content: "";
+  width: 110%;
+  height: 95px;
+  background: #fff;
+  position: absolute;
+  left: 50%;
+  top: -48px;
+  transform: translateX(-50%) skewY(19deg);
+  z-index: -1;
+  pointer-events: none;
+}
