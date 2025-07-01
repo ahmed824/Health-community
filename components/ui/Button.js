@@ -1,8 +1,8 @@
 import { cn } from "@/utils/cn";
 
 const buttonVariants = {
-  default: "bg-primary text-primary-foreground hover:bg-primary/90",
-  destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
+  default: "bg-[#FFFFFF1A] text-white w-full rounded-full h-fit capitalize font-bold text-[14px] hover:bg-white hover:text-primary ",
+  destructive: "bg-transparent  text-white border border-white rounded-full hover:bg-destructive/90",
   outline: "border border-solid border-[1px] border-primary text-primary bg-background hover:bg-primary hover:text-primary-foreground",
   secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
   ghost: "hover:bg-accent hover:text-accent-foreground",

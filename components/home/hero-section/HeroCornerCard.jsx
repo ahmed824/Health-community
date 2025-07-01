@@ -31,7 +31,7 @@ export default function HeroCornerCard({
           </span>
           <Link
             href={link}
-            className="flex capitalize items-center gap-2 text-primary-foreground text-lg font-[700] underline"
+            className="flex capitalize justify-center items-center gap-2 text-primary-foreground text-lg font-[700] underline"
           >
             {linkText} <br />
             {subText}

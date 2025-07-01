@@ -4,6 +4,7 @@ const HeroSection = lazy(() => import("./components/HeroSection"));
 const CounterCp = lazy(() => import("./components/Counter"));
 const FeaturesSection = lazy(() => import("./components/FeaturesSection"));
 const CTASection = lazy(() => import("./components/CTASection"));
+const OurCoursesSection = lazy(() => import("./components/OurCoursesSection"));
 
 export default function HomePage() {
   return (
@@ -12,6 +13,7 @@ export default function HomePage() {
         <HeroSection />
         <CounterCp />
         <FeaturesSection />
+        <OurCoursesSection />
         <CTASection />
       </Suspense>
     </main>

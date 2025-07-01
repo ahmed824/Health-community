@@ -11,9 +11,9 @@ const cards = [
     link: "/feature1",
     linkText: "Medical",
     subText: "Hiring",
-    positionClass: "top-16 left-16 rounded-tl-3xl border-l-8 skew-y-[-20deg] card-skew-fix-tl",
+    positionClass: "top-16 left-16 rounded-tl-3xl border-l-8 skew-y-[-20deg]  card-skew-fix-tl",
     cardClass: "",
-    textClass: "skew-y-[20deg] w-full h-full flex flex-col items-center justify-center",
+    textClass: "skew-y-[20deg] w-full h-full flex flex-col items-end justify-center",
     reverse: false,
   },
   {
