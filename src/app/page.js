@@ -1,8 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import Header from "../../components/layout/Header";
-import Footer from "../../components/layout/Footer";
+
 import HomePage from "../pages/home/HomePage";
 import { HealthPageLoader } from "../../components/ui";
 
@@ -28,9 +27,9 @@ export default function Home() {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <Header />
+   
       <HomePage />
-      <Footer />
+     
     </div>
   );
 }

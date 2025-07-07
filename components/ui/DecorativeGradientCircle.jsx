@@ -16,7 +16,7 @@ export default function DecorativeGradientCircle({
       className={`pointer-events-none flex items-center justify-center z-0 ${positionClass} decorative-gradient-outer ${className}`}
     >
       <div className="decorative-gradient-conic flex items-center justify-center rounded-full">
-        <div className="decorative-gradient-inner bg-white rounded-full" />
+        <div className="decorative-gradient-inner bg-transparent rounded-full" />
       </div>
     </div>
   );

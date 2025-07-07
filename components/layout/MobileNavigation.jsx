@@ -94,14 +94,14 @@ export default function MobileNavigation({ isOpen, onClose }) {
           >
             Create Cv
           </Link>
+          {/* Language Switcher */}
+          <div className="flex items-center space-x-2 mt-8">
+            <Image src={Globe} alt="Globe" width={24} height={24} />
+            <span className="text-lg text-[62px] text-[#FFFFFFB2] font-normal">
+              Arabic
+            </span>
+          </div>
         </nav>
-        {/* Language Switcher */}
-        <div className="flex items-center space-x-2 mt-8">
-          <Image src={Globe} alt="Globe" width={24} height={24} />
-          <span className="text-lg text-[62px] text-[#FFFFFFB2] font-normal">
-            Arabic
-          </span>
-        </div>
       </DialogContent>
     </Dialog>
   );

@@ -50,19 +50,23 @@ export default function Header() {
 
     return (
         <header className="z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="container mx-auto px-4 pb-[50px] sm:px-6 lg:px-8">
                 <div className="flex h-16 items-center justify-between">
                     {/* Left side - Burger Menu */}
-                    <button
-                        onClick={() => setIsMenuOpen(!isMenuOpen)}
-                        aria-label="Toggle menu"
-                        className="p-2 hover:bg-accent/50 rounded-lg transition-all duration-200 hover:scale-105"
-                    >
-                        <svg width="40" height="10" viewBox="0 0 40 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M9 1H39" stroke="#076A60" strokeWidth="2" strokeLinecap="round" />
-                            <path d="M1 9H31" stroke="#076A60" strokeWidth="2" strokeLinecap="round" />
-                        </svg>
-                    </button>
+                    <div className="flex items-center space-x-2 mt-8">
+
+                        <button
+                            onClick={() => setIsMenuOpen(!isMenuOpen)}
+                            aria-label="Toggle menu"
+                            className="p-2 hover:bg-accent/50 rounded-lg transition-all duration-200 hover:scale-105"
+                        >
+                            <svg width="40" height="10" viewBox="0 0 40 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9 1H39" stroke="#076A60" strokeWidth="2" strokeLinecap="round" />
+                                <path d="M1 9H31" stroke="#076A60" strokeWidth="2" strokeLinecap="round" />
+                            </svg>
+                        </button>
+                        <SearchButton onOpen={handleSearchOpen} currentGradient={currentGradient} />
+                    </div>
 
                     {/* Logo - Centered */}
                     <Link href="/" className="flex mt-11 items-center justify-center relative p-12 logo-container">
@@ -76,21 +80,20 @@ export default function Header() {
                     </Link>
 
                     {/* Right side - Search and Profile */}
-                    <div className="flex items-center space-x-2">
-                        <SearchButton onOpen={handleSearchOpen} currentGradient={currentGradient} />
+                    <div className=" mt-8">
                         <ProfileDropdown />
                     </div>
                 </div>
             </div>
 
-            <SearchModal 
-                isOpen={isSearchOpen} 
-                onClose={handleSearchClose} 
-                currentGradient={currentGradient} 
+            <SearchModal
+                isOpen={isSearchOpen}
+                onClose={handleSearchClose}
+                currentGradient={currentGradient}
             />
-            <MobileNavigation 
-                isOpen={isMenuOpen} 
-                onClose={() => setIsMenuOpen(false)} 
+            <MobileNavigation
+                isOpen={isMenuOpen}
+                onClose={() => setIsMenuOpen(false)}
             />
 
         </header>
