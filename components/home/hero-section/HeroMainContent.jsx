@@ -21,4 +21,4 @@ export default function HeroMainContent() {
       </div>
     </div>
   );
-} 
+}

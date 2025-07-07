@@ -3,7 +3,7 @@ import { cn } from "@/utils/cn";
 const buttonVariants = {
   default: "bg-[#FFFFFF1A] text-white w-full rounded-full h-fit capitalize font-bold text-[14px] hover:bg-white hover:text-primary ",
   destructive: "bg-transparent  text-white border border-white rounded-full hover:bg-destructive/90",
-  outline: "border border-solid border-[1px] border-primary text-primary bg-background hover:bg-primary hover:text-primary-foreground",
+  outline: "border border-solid border-[1px] border-primary text-primary bg- hover:bg-primary hover:text-primary-foreground",
   secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
   ghost: "hover:bg-accent hover:text-accent-foreground",
   link: "text-primary underline-offset-4 hover:underline",

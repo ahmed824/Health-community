@@ -1,11 +1,34 @@
 export const siteConfig = {
-  name: "Health Community",
+  name: "Health Community Co.",
   description: "A comprehensive health community platform for wellness and medical information",
   url: "https://health-community.com",
   ogImage: "https://health-community.com/og.jpg",
   links: {
-    twitter: "https://twitter.com/healthcommunity",
-    github: "https://github.com/health-community",
+    social: [
+      {
+        name: "Snapchat",
+        href: "https://snapchat.com/add/healthcommunity",
+        icon: "FaSnapchat",
+
+      },
+      {
+        name: "TikTok",
+        href: "https://tiktok.com/@healthcommunity",
+        icon: "PiTiktokLogoLight",
+
+      },
+      {
+        name: "Facebook",
+        href: "https://facebook.com/healthcommunity",
+        icon: "FiFacebook",
+
+      },
+      {
+        name: "Instagram",
+        href: "https://instagram.com/healthcommunity",
+        icon: "FiInstagram",
+      },
+    ],
   },
 };
 
@@ -34,18 +57,18 @@ export const navigation = [
 
 export const footerLinks = {
   company: [
-    { name: "About", href: "/about" },
-    { name: "Careers", href: "/careers" },
-    { name: "Contact", href: "/contact" },
+    { name: "home", href: "/" },
+    { name: "about us", href: "/about-us" },
+    { name: "courses", href: "/courses" },
+    { name: "jobs", href: "/jobs" },
+    { name: "blogs", href: "/blogs" },
   ],
   resources: [
-    { name: "Articles", href: "/articles" },
-    { name: "Guides", href: "/guides" },
-    { name: "Tools", href: "/tools" },
+    { name: "Health terms and conditions", href: "/conditions" },
+    { name: "privacy policy", href: "/privacy-policy" },
+    { name: "contact us", href: "/contact" },
+    { name: "login", href: "/login" },
+    { name: "sign up", href: "/sign-up" },
   ],
-  legal: [
-    { name: "Privacy", href: "/privacy" },
-    { name: "Terms", href: "/terms" },
-    { name: "Cookie Policy", href: "/cookies" },
-  ],
-}; 
+};
+

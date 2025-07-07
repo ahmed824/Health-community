@@ -15,6 +15,7 @@
   --input: #e2e8f0;
   --ring: #076a60;
   --radius: 0.5rem;
+  --backdrop-blur: 12px;
 }
 
 @theme inline {
@@ -31,6 +32,7 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+  --color-backdrop-blur: var(--backdrop-blur);
   --font-sans: var(--font-petrona);
 }
 
@@ -49,6 +51,7 @@
     --border: #076a600d;
     --input: #334155;
     --ring: #076a60;
+    --backdrop-blur: 12px;
   }
 }
 
@@ -69,7 +72,7 @@ body {
   background-image: linear-gradient(90deg, var(--border) 1px, transparent 1px),
     radial-gradient(circle at 25% 25%, var(--primary) 2px, transparent 2px),
     radial-gradient(circle at 75% 75%, var(--primary) 1px, transparent 1px);
-  background-size: 145px 100%, 800px 800px, 600px 600px;
+  background-size: 190px 100%, 800px 800px, 600px 600px;
   background-position: 0 0, 0 0, 0 0;
   color: var(--foreground);
   font-family: var(--font-petrona), system-ui, sans-serif;
@@ -110,10 +113,16 @@ html {
   pointer-events: none;
 }
 
-p {
+p,
+footer a {
   font-family: var(--font-inter), system-ui, sans-serif;
 }
 
+.max-w-none {
+  max-width: none !important;
+
+}
+ 
 /* Skew fix for HeroSection cards */
 .card-skew-fix-tl::after {
   content: "";
@@ -332,11 +341,299 @@ ul[class^="ring"] li {
 }
 
 .courses-swiper .swiper-pagination-bullet {
-  background: #267D74;
+  background: #267d74;
 }
 .courses-swiper .swiper-pagination-bullet-active {
   width: 20px;
   height: 8;
   background: #ffffff;
   border-radius: 50px;
+}
+
+.overaly {
+  position: relative;
+}
+.overaly::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 132px;
+  width: 360px;
+  height: 100%;
+  background: #076a6080;
+  z-index: 5;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+.courses-swiper {
+  overflow: visible !important;
+}
+
+.courses-swiper .swiper-slide {
+  display: flex;
+  justify-content: center;
+}
+
+.courses-swiper .swiper-pagination {
+  margin-bottom: -12px;
+}
+
+.decorative-gradient-outer {
+  width: 240px;
+  height: 240px;
+}
+.decorative-gradient-conic {
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 230.73deg,
+    rgba(7, 106, 96, 0.07) 15.34%,
+    rgba(7, 106, 96, 0) 75.05%
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.decorative-gradient-inner {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: white;
+}
+
+.job-swiper {
+  /* padding:20px !important; */
+}
+.job-swiper .swiper-wrapper {
+  padding: 12px 20px !important ;
+}
+
+.blogs-swiper .swiper-slide {
+  border-radius: 10px;
+}
+
+.swiper-3d .swiper-slide-shadow {
+  background: #076a601a !important;
+}
+
+/* Animation utilities */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInFromTop {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-in {
+  animation-fill-mode: both;
+}
+
+.fade-in {
+  animation: fadeIn 0.2s ease-out;
+}
+
+.slide-in-from-top-2 {
+  animation: slideInFromTop 0.2s ease-out;
+}
+
+.scale-in {
+  animation: scaleIn 0.2s ease-out;
+}
+
+/* Search modal enhancements */
+.search-modal {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.search-input-focus {
+  box-shadow: 0 0 0 3px rgba(7, 106, 96, 0.1);
+}
+
+/* Generated color gradients for search modal */
+.search-modal-gradient-1 {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.search-modal-gradient-2 {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+.search-modal-gradient-3 {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+
+.search-modal-gradient-4 {
+  background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+}
+
+.search-modal-gradient-5 {
+  background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+}
+
+/* Enhanced modal animations */
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.modal-slide-in {
+  animation: modalSlideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.modal-fade-in {
+  animation: modalFadeIn 0.2s ease-out;
+}
+
+/* Search result hover effects */
+.search-result-hover {
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.search-result-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Keyboard navigation indicator */
+.keyboard-nav-indicator {
+  position: relative;
+}
+
+.keyboard-nav-indicator::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(45deg, #076a60, #0d9488, #076a60);
+  border-radius: inherit;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.keyboard-nav-indicator:focus-within::before {
+  opacity: 1;
+}
+
+/* Custom Loader Animations */
+@keyframes heartbeat {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+@keyframes wave {
+  0%,
+  60%,
+  100% {
+    transform: scaleY(0.4);
+  }
+  30% {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.skeleton-shimmer {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* Enhanced bounce animation for dots */
+@keyframes enhancedBounce {
+  0%,
+  80%,
+  100% {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+  40% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+}
+
+.animate-enhanced-bounce {
+  animation: enhancedBounce 1.4s ease-in-out infinite;
+}
+
+/* Footer Background Pattern */
+.footer-bg-pattern {
+  background-image: linear-gradient(90deg, #ffffff1a 1px, transparent 1px),
+    radial-gradient(circle at 25% 25%, #ffffff1a 2px, transparent 2px),
+    radial-gradient(circle at 75% 75%, #ffffff1a 1px, transparent 1px);
+  background-size: 190px calc(100% - 80px), 800px 800px, 600px 600px;
+  background-position: 0 0, 0 0, 0 0;
+  background-repeat: repeat-x, repeat, repeat;
+  z-index: -1;
+}
+
+ 
+
+.blogs-swiper .swiper-pagination-bullet {
+  background: #076a6026;
+  opacity: 1;
+}
+.blogs-swiper .swiper-pagination-bullet-active {
+  background: var(--primary);
+  width: 20px;
+  height: 8;
+  border-radius: 50px;
+}
+.blogs-swiper .swiper-pagination {
+  bottom: -24px !important;
 }

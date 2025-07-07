@@ -1,11 +1,44 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import { 
+  HeroMainContentLoader, 
+  HeroBackgroundLoader, 
+  HeroCornerCardsLoader, 
+  HeroScrollIndicatorLoader 
+} from "./HeroSkeleton";
 
-const HeroMainContent = dynamic(() => import("../../../../components/home/hero-section/HeroMainContent"), { ssr: false });
-const HeroBackgroundDecoration = dynamic(() => import("../../../../components/home/hero-section/HeroBackgroundDecoration"), { ssr: false });
-const HeroCornerCards = dynamic(() => import("../../../../components/home/hero-section/HeroCornerCards"), { ssr: false });
-const HeroScrollIndicator = dynamic(() => import("../../../../components/home/hero-section/HeroScrollIndicator"), { ssr: false });
+const HeroMainContent = dynamic(
+  () => import("../../../../components/home/hero-section/HeroMainContent"), 
+  { 
+    ssr: false,
+    loading: () => <HeroMainContentLoader />
+  }
+);
+
+const HeroBackgroundDecoration = dynamic(
+  () => import("../../../../components/home/hero-section/HeroBackgroundDecoration"), 
+  { 
+    ssr: false,
+    loading: () => <HeroBackgroundLoader />
+  }
+);
+
+const HeroCornerCards = dynamic(
+  () => import("../../../../components/home/hero-section/HeroCornerCards"), 
+  { 
+    ssr: false,
+    loading: () => <HeroCornerCardsLoader />
+  }
+);
+
+const HeroScrollIndicator = dynamic(
+  () => import("../../../../components/home/hero-section/HeroScrollIndicator"), 
+  { 
+    ssr: false,
+    loading: () => <HeroScrollIndicatorLoader />
+  }
+);
 
 export default function HeroSection() {
   return (

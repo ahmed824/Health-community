@@ -19,7 +19,7 @@ export default function DoctorCard({
   toDate,
 }) {
   return (
-    <div className="rounded-2xl max-w-[360px] h-[593px] p-6 flex flex-col justify-between items-start text-left w-fit bg-[#0E6E65] border border-transparent hover:border-white transition-all duration-300 ease-in-out hover:scale-105">
+    <div className="rounded-2xl max-w-[360px]   h-[593px] p-6 flex flex-col justify-between items-start text-left w-fit bg-[#0E6E65] border border-transparent hover:border-white transition-all duration-300 ease-in-out hover:scale-105">
       <div className="w-[300px] h-[230px] rounded-sm mx-auto mb-4 overflow-hidden  ">
         <Image
           src={image}
