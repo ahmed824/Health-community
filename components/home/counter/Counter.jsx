@@ -57,7 +57,7 @@ export default function Counter() {
   }, [isLoading]);
 
   return (
-    <div className="relative mb-50 mx-auto px-4 sm:px-6 lg:px-8 my-8">
+    <div className="relative  mx-auto px-4 sm:px-6 lg:px-8 my-8">
       {/* Decorative Gradient Circle */}
       <DecorativeGradientCircle
         positionClass="absolute left-[-100px] top-1/2 -translate-y-1/2"

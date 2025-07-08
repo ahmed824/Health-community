@@ -158,7 +158,7 @@ export default function Blogs() {
               variant="outline"
               className="border-[#076A60] text-[#076A60] m-auto flex w-fit mt-10 hover:bg-[#076A60] hover:text-white"
             >
-              <Link href="/jobs">Explore All</Link>
+              <Link href="/blogs">Explore All</Link>
             </Button>
           </div>
         </div>

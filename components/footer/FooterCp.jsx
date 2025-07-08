@@ -3,21 +3,20 @@ import FooterSection from "./FooterSection";
 import FooterCopyright from "./FooterCopyright";
 import NewsletterSection from "./NewsletterSection";
 import SocialMediaSection from "./SocialMediaSection";
-import DecorativeGradientCircle from "../ui/DecorativeGradientCircle";
 import { footerLinks } from "@/lib/constants";
 import TopBanner from "./TopBanner";
 import Image from "next/image";
 
 export default function FooterCp() {
   return (
-    <footer className="bg-primary relative overflow-visible z-10 ">
+    <footer className="bg-primary relative overflow-visible mt-48 z-10 ">
       <div className="footer-bg-pattern ">
         {/* Top Banner Card */}
         <TopBanner />
 
         {/* Decorative Gradient Circle - Left Bottom */}
         <Image
-          src="/images/footer-decor.png"
+          src="/images/white-decor.png"
           alt="Decorative Circle"
           width={550}
           height={550}

@@ -39,7 +39,12 @@ export default function FeaturesSection() {
             <div className="flex justify-center">
               <OrbitAnimation />
             </div>
-            <FeaturesText />
+            <FeaturesText
+              isButton
+              heading="health community co."
+              subheading="connecting and empowering health community"
+              description="It is a long established fact that a reader will be distracted the readable content of a page when looking."
+            />
           </div>
         )}
       </div>

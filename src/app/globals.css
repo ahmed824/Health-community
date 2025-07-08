@@ -88,7 +88,7 @@ html {
 /* Focus styles */
 *:focus-visible {
   outline: none;
-  box-shadow: 0     
+  box-shadow: 0;
 }
 
 /* Selection styles */
@@ -114,15 +114,15 @@ html {
 }
 
 p,
-footer a {
+footer a,
+input {
   font-family: var(--font-inter), system-ui, sans-serif;
 }
 
 .max-w-none {
   max-width: none !important;
-
 }
- 
+
 /* Skew fix for HeroSection cards */
 .card-skew-fix-tl::after {
   content: "";
@@ -621,8 +621,6 @@ ul[class^="ring"] li {
   background-repeat: repeat-x, repeat, repeat;
   z-index: -1;
 }
-
- 
 
 .blogs-swiper .swiper-pagination-bullet {
   background: #076a6026;

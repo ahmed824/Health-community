@@ -49,8 +49,8 @@ export default function Header() {
     };
 
     return (
-        <header className="z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-            <div className="container mx-auto px-4 pb-[50px] sm:px-6 lg:px-8">
+        <header className="z-50 relative w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+            <div className="container mx-auto px-4 pb-[50px] sm:px-6 lg:px-8 ">
                 <div className="flex h-16 items-center justify-between">
                     {/* Left side - Burger Menu */}
                     <div className="flex items-center space-x-2 mt-8">

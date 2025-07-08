@@ -12,7 +12,7 @@ export default function Home() {
     // Simulate initial page load
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 1500);
+    }, 0);
 
     return () => clearTimeout(timer);
   }, []);

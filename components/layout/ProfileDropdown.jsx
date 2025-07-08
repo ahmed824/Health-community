@@ -21,7 +21,7 @@ export default function ProfileDropdown() {
 
       {/* Profile Dropdown Menu */}
       {isOpen && (
-        <div className="absolute right-0 top-full mt-2 w-48 bg-background/95 backdrop-blur border-[#FFFFFF1A] rounded-lg shadow-lg py-2 z-50 animate-in slide-in-from-top-2 duration-200">
+        <div className="absolute right-0 top-full mt-2 w-48 bg-background/95 backdrop-blur border-[#FFFFFF1A] rounded-lg shadow-lg py-2 z-100 animate-in slide-in-from-top-2 duration-200">
           <Link
             href="/profile"
             className="flex items-center space-x-3 px-4 py-2 text-sm text-primary hover:text-foreground hover:bg-accent transition-colors"
