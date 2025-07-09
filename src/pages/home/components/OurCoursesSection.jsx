@@ -129,18 +129,18 @@ export default function OurCoursesSection() {
         priority
       />
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 ">
-        <div className="flex flex-row justify-between">
+        <div className="flex flex-row justify-between ">
           <div className="flex flex-col">
-            <h2 className="text-[18px]  font-bold text-white  mb-6 capitalize text-left">
+            <h2 className="text-[18px] z-20 font-bold text-white  mb-6 capitalize text-left">
               Our Courses
             </h2>
-            <h3 className="text-[52px]  font-bold text-white  mb-10 capitalize text-left">
+            <h3 className="text-[52px] z-20 font-bold text-white  mb-10 capitalize text-left">
               explore our courses
             </h3>
           </div>
-          <Button variant="destructive" asChild>
+          <Button variant="destructive" asChild className={"z-20"} >
             <Link
-              className="w-[132px]   py-8 flex capitalize justify-center items-center"
+              className="w-[132px] z-20  py-8 flex capitalize justify-center items-center"
               href="/courses"
             >
               explore all
@@ -215,7 +215,8 @@ export default function OurCoursesSection() {
                   return (
                     <SwiperSlide className={`p-4 py-10 ${blurClass}`} key={idx}>
                       <div className={disableClass}>
-                        <DoctorCard {...doctor} />
+                      <DoctorCard {...doctor} mode="primary" key={idx} />
+
                       </div>
                     </SwiperSlide>
                   );

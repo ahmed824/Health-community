@@ -5,7 +5,7 @@ const buttonVariants = {
   destructive: "bg-transparent  text-white border border-white rounded-full hover:bg-destructive/90",
   outline: "border border-solid border-[1px] border-primary text-primary bg- hover:bg-primary hover:text-primary-foreground",
   secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
-  ghost: "hover:bg-accent hover:text-accent-foreground",
+  ghost: "hover:bg-accent text-primary bg-[#CDE1DF]  ",
   link: "text-primary underline-offset-4 hover:underline",
 };
 
@@ -28,7 +28,7 @@ export default function Button({
   return (
     <Comp
       className={cn(
-        "inline-flex capitalize items-center justify-center    ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+        "inline-flex capitalize items-center justify-center  cursor-pointer  ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
         buttonVariants[variant],
         buttonSizes[size],
         className

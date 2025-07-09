@@ -635,3 +635,32 @@ ul[class^="ring"] li {
 .blogs-swiper .swiper-pagination {
   bottom: -24px !important;
 }
+
+.tab-sidebar.active::before,
+.tab-sidebar.active::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  width: 40px; /* adjust as needed */
+  height: 40px; /* adjust as needed */
+  background-repeat: no-repeat;
+  background-size: contain;
+  z-index: 10;
+}
+
+.tab-sidebar.active::before {
+  top: -36px;
+  background-image: url("/images/top-corner.png");
+}
+
+.tab-sidebar.active::after {
+  bottom: -36px;
+  transform: scaleY(-1);
+  background-image: url("/images/top-corner.png");
+}
+
+/* Make sure .tab-sidebar is positioned */
+.tab-sidebar.active {
+  position: relative;
+  transition: all 0.2s ease;
+}

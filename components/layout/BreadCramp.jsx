@@ -1,6 +1,5 @@
 import React from "react";
 import Image from "next/image";
-
 function BreadCramp({ heading, paragraph, image, imageClass }) {
   return (
     <section className="relative [background-image:url('/images/green-bg.png')] [background-size:100%_100%] min-h-[440px] overflow-hidden">
