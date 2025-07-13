@@ -23,6 +23,9 @@ export default function DoctorCard({
   // Color and style configs
   const isPrimary = mode === "primary";
   const bgClass = isPrimary ? "bg-[#0E6E65]" : "bg-[#EEF5F4]";
+  const hoverClass = isPrimary
+    ? "hover:border-white"
+    : "hover:bg-white hover:border-primary";
   const nameClass = isPrimary ? "text-white" : "text-primary";
   const specialtyClass = isPrimary ? "text-white" : "text-primary";
   const textClass = isPrimary ? "text-[#B7D3D1]" : "text-[#617A78]";
@@ -34,7 +37,7 @@ export default function DoctorCard({
 
   return (
     <div
-      className={`rounded-2xl max-w-[360px] h-[593px] p-6 flex flex-col justify-between items-start text-left w-fit ${bgClass} border border-transparent hover:border-white transition-all duration-300 ease-in-out hover:scale-105 ${className}`}
+      className={`rounded-2xl max-w-[360px] h-[593px] p-6 flex flex-col justify-between items-start text-left w-fit ${bgClass} border border-transparent ${hoverClass} transition-all duration-300 ease-in-out hover:scale-101 ${className}`}
     >
       <div className="w-[300px] h-[230px] rounded-sm mx-auto mb-4 overflow-hidden  ">
         <Image

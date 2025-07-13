@@ -1,20 +1,40 @@
 import * as React from "react";
 
-export function Select({ value, onValueChange, options, placeholder, className = "", name }) {
+export function Select({ value, onValueChange, options, placeholder, className = "", name, icon }) {
   const [open, setOpen] = React.useState(false);
+  const ref = React.useRef(null);
+
+  React.useEffect(() => {
+    if (!open) return;
+    function handleClickOutside(event) {
+      if (ref.current && !ref.current.contains(event.target)) {
+        setOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [open]);
+
   const handleSelect = (val) => {
     onValueChange(val);
     setOpen(false);
   };
   const selectedLabel = options.find((opt) => opt.value === value)?.label;
   return (
-    <div className={`relative ${className}`}> 
+    <div ref={ref} className={`relative ${className}`}> 
       <button
         type="button"
-        className="w-full px-6 py-3 border border-transparent rounded-full bg-[#F3F7F7] text-foreground text-left focus:bg-white focus:border-ring focus:outline-none pl-11"
+        className="w-full px-6 py-3 border border-transparent rounded-full bg-[#F3F7F7] text-[#617A78] text-left focus:bg-white focus:border-ring focus:outline-none pl-11 relative"
         onClick={() => setOpen((o) => !o)}
         name={name}
       >
+        {icon && (
+          <span className="absolute left-4 top-1/2 -translate-y-1/2 text-xl text-[#617A78] pointer-events-none">
+            {icon}
+          </span>
+        )}
         {selectedLabel || <span className="text-[#617A78]">{placeholder}</span>}
       </button>
       {open && (

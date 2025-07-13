@@ -35,9 +35,9 @@ const cvs = [
 export default function MyCVsTab() {
   return (
     <div className="w-full mx-auto">
-      <div className="flex items-center gap-3 mb-4">
+      <div className="flex items-center text-primary gap-3 mb-4">
         <IoDocumentTextSharp />
-        <h2 className="text-2xl font-semibold text-primary">My CVs</h2>
+        <h2 className="text-2xl font-semibold ">My CVs</h2>
       </div>
       <div className="bg-white border border-[#B7D3D1] rounded-xl p-6 pb-12">
         <div className="flex items-center justify-between mb-4">

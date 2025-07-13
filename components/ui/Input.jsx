@@ -27,7 +27,7 @@ const Input = React.forwardRef(function Input({
           {label}
         </label>
       )}
-      <div className="relative mb-8">
+      <div className="relative  ">
         {icon && (
           <span className="absolute left-3 top-1/2 pl-3 -translate-y-1/2 text-[#617A78] pointer-events-none">
             {icon}

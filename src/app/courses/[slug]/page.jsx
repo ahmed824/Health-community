@@ -1,6 +1,7 @@
 "use client";
 import { useParams } from "next/navigation";
 import { useState, useEffect } from "react";
+import CoursePage from "../../../pages/courses/CoursePage";  
 
 const doctors = [
   {
@@ -39,31 +40,38 @@ const doctors = [
     fromDate: "2025-07-14",
     toDate: "2025-07-20",
   },
+  {
+    name: "Dr. Omar Youssef",
+    specialty: "Pediatrician",
+    image: "/images/doctors/img3.png",
+    details: "Caring for children and infants with compassion.",
+    link: "/course/omar-youssef",
+    avatar: "/images/avatar.jpg",
+    remotely: true,
+    price: 150,
+    fromDate: "2025-07-14",
+    toDate: "2025-07-20",
+  },
 ];
 
 export default function Course() {
   const params = useParams();
   const [doctor, setDoctor] = useState(null);
+  const [otherDoctors, setOtherDoctors] = useState([]);
 
   useEffect(() => {
-    const foundDoctor = doctors.find((d) => d.link.split("/").pop() === params.slug);
+    const foundDoctor = doctors.find(
+      (d) => d.link.split("/").pop() === params.slug
+    );
     setDoctor(foundDoctor || null);
+    setOtherDoctors(
+      doctors.filter((d) => d.link.split("/").pop() !== params.slug)
+    );
   }, [params.slug]);
 
   if (!doctor) {
     return <div>Doctor not found</div>;
   }
 
-  return (
-    <div className="container mx-auto py-8">
-      <h1 className="text-3xl font-bold mb-4 text-primary">{doctor.name}</h1>
-      <p>Specialty: {doctor.specialty}</p>
-      <p>Details: {doctor.details}</p>
-      <p>Price: ${doctor.price}</p>
-      <p>Remotely: {doctor.remotely ? "Yes" : "No"}</p>
-      <p>From: {doctor.fromDate}</p>
-      <p>To: {doctor.toDate}</p>
-      {/* Add more details or a DoctorCard component here if needed */}
-    </div>
-  );
+  return <CoursePage course={doctor} otherCourses={doctors} />;
 }

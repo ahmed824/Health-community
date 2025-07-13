@@ -1,6 +1,9 @@
-import React from "react";
+
+"use client";
+import React, { useState, useMemo } from "react";
 import BreadCramp from "../../../components/layout/BreadCramp";
 import DoctorCard from "../../../components/layout/DoctorCard";
+import Filter from "../../../components/layout/Filter";
 
 const doctors = [
   {
@@ -77,7 +80,89 @@ const doctors = [
   },
 ];
 
+const countries = [
+  { value: "", label: "Select Country" },
+  { value: "egypt", label: "Egypt" },
+  { value: "ksa", label: "Saudi Arabia" },
+  { value: "uae", label: "UAE" },
+  { value: "usa", label: "USA" },
+];
+
+const countryCityMap = {
+  egypt: [
+    { value: "cairo", label: "Cairo" },
+  ],
+  ksa: [
+    { value: "riyadh", label: "Riyadh" },
+  ],
+  uae: [
+    { value: "dubai", label: "Dubai" },
+  ],
+  usa: [
+    { value: "newyork", label: "New York" },
+  ],
+};
+
+const allCities = [
+  { value: "", label: "Select City" },
+  { value: "cairo", label: "Cairo" },
+  { value: "riyadh", label: "Riyadh" },
+  { value: "dubai", label: "Dubai" },
+  { value: "newyork", label: "New York" },
+];
+
 export default function Courses() {
+  const [filter, setFilter] = useState({
+    search: "",
+    specialty: "",
+    license: "",
+    country: "",
+    city: "",
+    mode: "",
+  });
+  const [startDate, setStartDate] = useState("");
+
+  // Extract unique specialties from doctors
+  const specialties = useMemo(() => {
+    const set = new Set();
+    doctors.forEach((d) => set.add(d.specialty));
+    return [{ value: "", label: "Medical Specialty" }, ...Array.from(set).map(s => ({ value: s, label: s }))];
+  }, []);
+
+  // Filter cities based on selected country
+  const filteredCities = useMemo(() => {
+    if (!filter.country) return allCities;
+    return [allCities[0], ...(countryCityMap[filter.country] || [])];
+  }, [filter.country]);
+
+  // Filtering logic
+  const filteredDoctors = useMemo(() => {
+    return doctors.filter((doctor) => {
+      const matchesSearch =
+        !filter.search ||
+        doctor.name.toLowerCase().includes(filter.search.toLowerCase()) ||
+        doctor.specialty.toLowerCase().includes(filter.search.toLowerCase()) ||
+        doctor.details.toLowerCase().includes(filter.search.toLowerCase());
+      const matchesSpecialty = !filter.specialty || doctor.specialty === filter.specialty;
+      // For demo, country/city are not in doctor data, so skip those filters
+      const matchesMode =
+        !filter.mode ||
+        (filter.mode === "remotely" && doctor.remotely) ||
+        (filter.mode === "in-person" && !doctor.remotely);
+      return matchesSearch && matchesSpecialty && matchesMode;
+    });
+  }, [filter]);
+
+ 
+
+  // Dummy license options
+  const licenseOptions = [
+    { value: "", label: "License" },
+    { value: "general", label: "General" },
+    { value: "specialist", label: "Specialist" },
+    { value: "consultant", label: "Consultant" },
+  ];
+
   return (
     <>
       <BreadCramp
@@ -88,15 +173,30 @@ export default function Courses() {
         image={"course-bg.png"}
         imageClass="bottom-4"
       />
-      <div className="container mx-auto py-8">
+      <div className="container mx-auto py-8 px-16">
         <h1 className="text-3xl font-bold mb-8 text-primary">
           find your course
         </h1>
+        <Filter
+          filter={filter}
+          onChange={setFilter}
+          specialties={specialties}
+          countries={countries}
+          cities={filteredCities}
+          onSearch={() => {}}
+          variant="courses"
+          licenseOptions={licenseOptions}
+          startDate={startDate}
+          onStartDateChange={setStartDate}
+        />
         <div className="flex flex-wrap gap-8 justify-center">
-          {doctors.map((doctor, idx) => (
-            <DoctorCard {...doctor} mode="secondary" key={idx} />
-
-          ))}
+          {filteredDoctors.length === 0 ? (
+            <div className="text-gray-500 text-lg py-12">No courses found.</div>
+          ) : (
+            filteredDoctors.map((doctor, idx) => (
+              <DoctorCard {...doctor} mode="secondary" key={idx} />
+            ))
+          )}
         </div>
       </div>
     </>
