@@ -1,9 +1,8 @@
 import React from "react";
-import { FaPlus, FaMinus, FaCertificate, FaLanguage, FaFileAlt, FaUser, FaUniversity, FaLink } from "react-icons/fa";
+import { FaPlus, FaMinus, FaCertificate, FaLanguage, FaUser, FaLink } from "react-icons/fa";
 import { IoDocumentText } from "react-icons/io5";
 import Input from "../../../components/ui/Input";
 import { Select } from "../../../components/ui/Select";
-import { useState } from "react";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { FaTrash } from "react-icons/fa";
 

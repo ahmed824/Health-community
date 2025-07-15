@@ -1,39 +1,6 @@
 @import "tailwindcss";
 
-/* PDF compatibility overrides - convert oklch colors to standard formats */
-.cv-preview {
-  /* Force standard color formats for PDF generation */
-  color-scheme: light;
-}
-
-.cv-preview * {
-  /* Override any oklch colors with standard hex/rgb values */
-  color: inherit;
-}
-
-/* Specific color overrides for common Tailwind classes */
-.cv-preview .text-blue-600 { color: #2563eb !important; }
-.cv-preview .text-gray-800 { color: #1f2937 !important; }
-.cv-preview .text-gray-700 { color: #374151 !important; }
-.cv-preview .text-gray-600 { color: #4b5563 !important; }
-.cv-preview .text-gray-500 { color: #6b7280 !important; }
-.cv-preview .text-gray-400 { color: #9ca3af !important; }
-
-.cv-preview .bg-blue-600 { background-color: #2563eb !important; }
-.cv-preview .bg-gray-100 { background-color: #f3f4f6 !important; }
-.cv-preview .bg-gray-200 { background-color: #e5e7eb !important; }
-.cv-preview .bg-gray-300 { background-color: #d1d5db !important; }
-.cv-preview .bg-white { background-color: #ffffff !important; }
-
-.cv-preview .border-blue-600 { border-color: #2563eb !important; }
-.cv-preview .border-gray-300 { border-color: #d1d5db !important; }
-.cv-preview .border-gray-200 { border-color: #e5e7eb !important; }
-
-.cv-preview .bg-red-500 { background-color: #ef4444 !important; }
-.cv-preview .bg-yellow-500 { background-color: #eab308 !important; }
-.cv-preview .bg-green-500 { background-color: #22c55e !important; }
-.cv-preview .bg-gray-500 { background-color: #6b7280 !important; }
-
+ 
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -698,3 +665,5 @@ ul[class^="ring"] li {
   position: relative;
   transition: all ease;
 }
+
+
