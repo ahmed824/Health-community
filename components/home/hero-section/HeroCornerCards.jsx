@@ -8,7 +8,7 @@ const cards = [
     imageAlt: "Card 1",
     imageClassName: "absolute top-[105px] -left-[87px]",
     number: "01",
-    link: "/feature1",
+    link: "/hiring",
     linkText: "Medical",
     subText: "Hiring",
     positionClass: "top-16 left-16 rounded-tl-3xl border-l-8 skew-y-[-20deg]  card-skew-fix-tl",

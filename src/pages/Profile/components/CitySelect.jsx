@@ -25,7 +25,7 @@ export default function CitySelect({ value, onChange, error, cities }) {
           <SelectTrigger
             id="city"
             name="city"
-            className="w-full px-6 py-3 border border-transparent rounded-full bg-[#F3F7F7] text-[#617A78] transition-all focus:bg-white focus:border-ring focus:outline-none pl-11"
+            className="w-full px-6 py-6 border border-transparent rounded-full bg-[#F3F7F7] text-[#617A78] transition-all focus:bg-white focus:border-ring focus:outline-none pl-11"
           >
             <SelectValue placeholder="Select City" />
           </SelectTrigger>

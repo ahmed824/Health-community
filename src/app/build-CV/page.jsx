@@ -6,6 +6,9 @@ import {
   FaCode,
   FaUserTie,
   FaLaptopCode,
+  FaPrint,
+  FaDownload,
+  FaSpinner,
 } from "react-icons/fa";
 import PersonalInfoStep from "./PersonalInfoStep";
 import EducationStep from "./EducationStep";
@@ -46,7 +49,7 @@ const countryCityMap = {
   usa: [{ value: "newyork", label: "New York" }],
 };
 
-const CVBuilder = () => {
+const Page = () => {
   const cvRef = useRef();
   const [isGenerating, setIsGenerating] = useState(false);
   const [step, setStep] = useState(1);
@@ -376,10 +379,46 @@ const CVBuilder = () => {
     }));
   };
 
+  // PDF Download functionality (lifted from CVPreview)
+  const downloadPDF = async () => {
+    if (!cvRef.current) return;
+    setIsGenerating(true);
+    cvRef.current.classList.add("pdf-exporting");
+    try {
+      const html2pdf = (await import("html2pdf.js")).default;
+      const element = cvRef.current;
+      const opt = {
+        margin: 0.2,
+        filename: `${cvData.personalInfo.fullName || "CV"}_Resume.pdf`,
+        image: { type: "jpeg", quality: 0.98 },
+        html2canvas: {
+          scale: 1,
+          useCORS: true,
+          letterRendering: true,
+          allowTaint: true,
+          backgroundColor: "#ffffff",
+        },
+        jsPDF: {
+          unit: "in",
+          format: "a4",
+          orientation: "portrait",
+        },
+      };
+      await html2pdf().set(opt).from(element).save();
+    } catch (error) {
+      console.error("Error generating PDF:", error);
+      alert("Error generating PDF. Please try again.");
+    } finally {
+      cvRef.current.classList.remove("pdf-exporting");
+      setIsGenerating(false);
+    }
+  };
+
  
+
   return (
     <>
-      <div className="min-h-screen   p-4">
+      <div className="min-h-screen ">
         <BreadCramp
           heading={"Resume Writing"}
           paragraph={
@@ -509,14 +548,31 @@ const CVBuilder = () => {
                   <FaCode className="w-6 h-6 text-primary" />
                   CV Preview
                 </h2>
+                {/* Action Buttons moved here */}
+                <div className="flex items-center gap-2">
+                  
+                  <button
+                    onClick={downloadPDF}
+                    disabled={!isFormValid(cvData) || isGenerating}
+                    className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                  >
+                    {isGenerating ? (
+                      <FaSpinner className="w-4 h-4 animate-spin" />
+                    ) : (
+                      <FaDownload className="w-4 h-4" />
+                    )}
+                    {isGenerating ? "Generating..." : "Download PDF"}
+                  </button>
+                </div>
               </div>
               <div className="p-0">
-                <div ref={cvRef}>
+                <div>
                   <CVPreview
                     cvData={cvData}
                     formatExperienceDuration={formatExperienceDuration}
                     formatEducationDuration={formatEducationDuration}
                     isFormValid={isFormValid(cvData)}
+                    cvRef={cvRef}
                   />
                 </div>
               </div>
@@ -524,12 +580,9 @@ const CVBuilder = () => {
           </div>
         </div>
       </div>
-      <SuccessDialog
-        open={showSuccess}
-        onClose={setShowSuccess}
-       />
+      <SuccessDialog open={showSuccess} onClose={setShowSuccess} />
     </>
   );
 };
 
-export default CVBuilder;
+export default Page;

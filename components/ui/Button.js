@@ -12,7 +12,7 @@ const buttonVariants = {
 const buttonSizes = {
   default: "h-10 px-4 py-2",
   sm: "h-9 rounded-full px-3",
-  lg: "h-11 rounded-full px-8   font-bold text-[14px] leading-[100%] tracking-[0%] text-center capitalize",
+  lg: "h-11 rounded-full px-8 font-bold text-[14px] leading-[100%] tracking-[0%] text-center capitalize",
   icon: "h-10 w-10",
 };
 

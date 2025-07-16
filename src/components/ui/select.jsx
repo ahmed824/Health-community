@@ -7,9 +7,10 @@ import { FaCheck, FaChevronDown, FaChevronUp } from "react-icons/fa";
 import { cn } from "@/lib/utils"
 
 function Select({
+  icon, // add icon prop
   ...props
 }) {
-  return <SelectPrimitive.Root data-slot="select" {...props} />;
+  return <SelectPrimitive.Root data-slot="select" {...props} icon={icon} />;
 }
 
 function SelectGroup({
@@ -28,6 +29,7 @@ function SelectTrigger({
   className,
   size = "default",
   children,
+  icon, // add icon prop
   ...props
 }) {
   return (
@@ -40,6 +42,7 @@ function SelectTrigger({
         className
       )}
       {...props}>
+      {icon && <span className="mr-2">{icon}</span>}
       {children}
       <SelectPrimitive.Icon asChild>
         <FaChevronDown className="size-3 text-[#617a78]" />

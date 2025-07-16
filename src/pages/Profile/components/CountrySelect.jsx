@@ -25,7 +25,7 @@ export default function CountrySelect({ value, onChange, error, countries }) {
           <SelectTrigger
             id="country"
             name="country"
-            className="w-full px-6 py-3 text-[#617A78] border border-transparent rounded-full bg-[#F3F7F7] transition-all focus:bg-white focus:border-ring focus:outline-none pl-11"
+            className="w-full px-6 py-6 text-[#617A78] border border-transparent rounded-full bg-[#F3F7F7] transition-all focus:bg-white focus:border-ring focus:outline-none pl-11"
           >
             <SelectValue placeholder="Select Country" />
           </SelectTrigger>
