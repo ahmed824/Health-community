@@ -3,11 +3,15 @@ import FooterSection from "./FooterSection";
 import FooterCopyright from "./FooterCopyright";
 import NewsletterSection from "./NewsletterSection";
 import SocialMediaSection from "./SocialMediaSection";
-import { footerLinks } from "@/lib/constants";
+import { getFooterLinks } from "@/lib/constants";
 import TopBanner from "./TopBanner";
 import Image from "next/image";
+import { useTranslation } from "react-i18next";
 
 export default function FooterCp() {
+  const { i18n } = useTranslation();
+  const footerLinks = getFooterLinks(i18n.language);
+
   return (
     <footer className="bg-primary relative overflow-visible mt-48 z-10 ">
       <div className="footer-bg-pattern ">

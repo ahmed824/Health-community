@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from 'react';
 
-import HomePage from "../pages/home/HomePage";
-import { HealthPageLoader } from "../../components/ui";
+import HomePage from '@/pages/home/HomePage';  
+import { HealthPageLoader } from '../../../components/ui';   
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);

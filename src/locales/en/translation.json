@@ -1,0 +1,36 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "courses": "Courses",
+    "jobs": "Jobs",
+    "blogs": "Blogs",
+    "contact": "Contact"
+  },
+  "create_cv": "Create CV",
+  "close_menu": "Close Menu",
+  "mobile_nav_menu": "Mobile Navigation Menu",
+  "language": "Language",
+  "arabic": "Arabic",
+  "english": "English",
+  "hero_cards": {
+    "card1_alt": "Medical Hiring Card",
+    "card2_alt": "Resume Writing Card",
+    "card3_alt": "Development and Training Card",
+    "card4_alt": "Manage Profile Card",
+    "medical": "Medical",
+    "hiring": "Hiring",
+    "resume": "Resume",
+    "writing": "Writing",
+    "development": "Development",
+    "training": "and Training",
+    "manage": "Manage",
+    "profile": "Profile"
+  },
+  "hero_main": {
+    "company_name": "Health Community Co.",
+    "title": "Connecting and Empowering Health Community",
+    "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking.",
+    "explore_button": "Explore Community"
+  }
+}

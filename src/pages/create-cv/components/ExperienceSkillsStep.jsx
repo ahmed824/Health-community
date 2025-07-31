@@ -1,8 +1,12 @@
+"use client"
 import React from "react";
 import { FaBriefcase, FaPlus, FaMinus, FaLaptopCode, FaUserTie } from "react-icons/fa";
-import Input from "../../../components/ui/Input";
-import CountrySelect from "../../pages/Profile/components/CountrySelect";
-import CitySelect from "../../pages/Profile/components/CitySelect";
+import Input from "../../../../components/ui/Input";
+ 
+// 🧠 Dynamically loaded, client-side only
+const CountrySelect = dynamic(() => import("../../Profile/components/CountrySelect"), { ssr: false });
+const CitySelect = dynamic(() => import("../../Profile/components/CitySelect"), { ssr: false });
+
 import {
   Select as ShadcnSelect,
   SelectTrigger,
@@ -13,6 +17,7 @@ import {
 import { RiBuilding2Fill } from "react-icons/ri";
 import { FaCalendarAlt } from "react-icons/fa";
 import { FaRegEnvelope } from "react-icons/fa";
+import dynamic from "next/dynamic";
 
 const years = Array.from({ length: 50 }, (_, i) => {
   const year = new Date().getFullYear() - i;

@@ -12,7 +12,7 @@ export default function About() {
   return (
     <>
       <BreadCramp
-        heading={"Login"}
+        heading={"about us"}
         paragraph={
           "Fill in your details and let us craft a professional resume just for you"
         }

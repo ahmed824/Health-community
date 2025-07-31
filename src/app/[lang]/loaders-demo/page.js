@@ -6,7 +6,7 @@ import {
   DotsLoader, 
   SkeletonLoader, 
   HealthPageLoader 
-} from '../../../components/ui';
+} from '../../../../components/ui';
 
 const LoadersDemo = () => {
   const [loading, setLoading] = useState(true);

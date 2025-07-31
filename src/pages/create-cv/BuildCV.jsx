@@ -6,25 +6,51 @@ import {
   FaCode,
   FaUserTie,
   FaLaptopCode,
-  FaPrint,
   FaDownload,
   FaSpinner,
+  FaCertificate,
+  FaCheck,
 } from "react-icons/fa";
-import PersonalInfoStep from "./PersonalInfoStep";
-import EducationStep from "./EducationStep";
-import ExperienceSkillsStep from "./ExperienceSkillsStep";
-import LanguagesCertificatesStep from "./LanguagesCertificatesStep";
+import dynamic from "next/dynamic";
 
-import BreadCramp from "../../../components/layout/BreadCramp";
-import CVStepper from "./CVStepper";
-import StepNavigation from "./StepNavigation";
-import CVPreview from "./CVPreview";
-import SuccessDialog from "./SuccessDialog";
+const PersonalInfoStep = dynamic(
+  () => import("./components/PersonalInfoStep"),
+  { ssr: false }
+);
+const EducationStep = dynamic(() => import("./components/EducationStep"), {
+  ssr: false,
+});
+const ExperienceSkillsStep = dynamic(
+  () => import("./components/ExperienceSkillsStep"),
+  { ssr: false }
+);
+const LanguagesCertificatesStep = dynamic(
+  () => import("./components/LanguagesCertificatesStep"),
+  { ssr: false }
+);
+
+const BreadCramp = dynamic(
+  () => import("../../../components/layout/BreadCramp"),
+  { ssr: false }
+);
+const CVStepper = dynamic(() => import("./components/CVStepper"), {
+  ssr: false,
+});
+const StepNavigation = dynamic(() => import("./components/StepNavigation"), {
+  ssr: false,
+});
+const CVPreview = dynamic(() => import("./components/CVPreview"), {
+  ssr: false,
+});
+const SuccessDialog = dynamic(() => import("./components/SuccessDialog"), {
+  ssr: false,
+});
+
 import {
   formatExperienceDuration,
   formatEducationDuration,
   isFormValid,
-} from "./cvUtils";
+} from "./components/cvUtils";
 
 const countries = [
   { value: "", label: "Select Country" },
@@ -49,7 +75,7 @@ const countryCityMap = {
   usa: [{ value: "newyork", label: "New York" }],
 };
 
-const Page = () => {
+const BuildCV = () => {
   const cvRef = useRef();
   const [isGenerating, setIsGenerating] = useState(false);
   const [step, setStep] = useState(1);
@@ -414,8 +440,6 @@ const Page = () => {
     }
   };
 
- 
-
   return (
     <>
       <div className="min-h-screen ">
@@ -427,153 +451,166 @@ const Page = () => {
           image={"resume.png"}
           imageClass={"bottom-5 right-40"}
         />
-        <div className="max-w-7xl  mx-auto">
-          <h1 className="text-4xl  font-bold text-primary mb-2">
-            Fill in this information to create your CV
-          </h1>
+        <div className="  mx-auto">
+          <div className="container">
+            <h1 className="text-4xl  font-bold text-primary mb-2">
+              Fill in this information to create your CV
+            </h1>
 
-          {/* Stepper UI */}
-          <CVStepper
-            step={step}
-            steps={[
-              {
-                icon: <FaUserTie />,
-                label: "Personal Info",
-                aria: "Personal Info",
-                desc: "Your basic details",
-              },
-              {
-                icon: <FaBriefcase />,
-                label: "Work Experience",
-                aria: "Work Experience",
-                desc: "Jobs & roles",
-              },
-              {
-                icon: <FaGraduationCap />,
-                label: "Education",
-                aria: "Education",
-                desc: "School & degrees",
-              },
-              {
-                icon: <FaLaptopCode />,
-                label: "Skills & More",
-                aria: "Skills & More",
-                desc: "Skills, awards, etc.",
-              },
-            ]}
-          />
+            {/* Stepper UI */}
+            <CVStepper
+              step={step}
+              steps={[
+                {
+                  icon: <FaUserTie />,
+                  label: "Personal Info",
+                  aria: "Personal Info",
+                  desc: "Your basic details",
+                },
+                {
+                  icon: <FaBriefcase />,
+                  label: "Work Experience",
+                  aria: "Work Experience",
+                  desc: "Jobs & roles",
+                },
+                {
+                  icon: <FaGraduationCap />,
+                  label: "Education",
+                  aria: "Education",
+                  desc: "School & degrees",
+                },
+                {
+                  icon: <FaLaptopCode />,
+                  label: "Skills & More",
+                  aria: "Skills & More",
+                  desc: "Skills, awards, etc.",
+                },
+              ]}
+            />
+          </div>
 
-          <div className="flex justify-center gap-8 items-start mt-16">
-            {/* Step Form */}
-            <div className="w-full h-fit mb-8">
-              {step === 1 && (
-                <PersonalInfoStep
-                  personalInfo={cvData.personalInfo}
-                  updatePersonalInfo={updatePersonalInfo}
-                  countries={countries}
-                  cities={allCities}
-                  filteredCities={filteredCities}
-                  onCountryChange={handleCountryChange}
-                  onCityChange={handleCityChange}
-                  onImageChange={handleImageChange}
-                  onAddSocialLink={handleAddSocialLink}
-                  onRemoveSocialLink={handleRemoveSocialLink}
-                  onSocialLinkChange={handleSocialLinkChange}
-                  onRemoveImage={handleRemoveImage}
-                />
-              )}
-              {step === 2 && (
-                <ExperienceSkillsStep
-                  experience={cvData.experience}
-                  addExperience={addExperience}
-                  updateExperience={updateExperience}
-                  removeExperience={removeExperience}
-                  skills={cvData.skills}
-                  addSkill={addSkill}
-                  updateSkill={updateSkill}
-                  removeSkill={removeSkill}
-                  countries={countries}
-                  cities={allCities}
-                  filteredCities={filteredCities}
-                  countryCityMap={countryCityMap}
-                />
-              )}
-              {step === 3 && (
-                <EducationStep
-                  education={cvData.education}
-                  addEducation={addEducation}
-                  updateEducation={updateEducation}
-                  removeEducation={removeEducation}
-                  countries={countries}
-                  cities={allCities}
-                />
-              )}
-              {step === 4 && (
-                <LanguagesCertificatesStep
-                  languages={cvData.languages}
-                  addLanguage={addLanguage}
-                  updateLanguage={updateLanguage}
-                  removeLanguage={removeLanguage}
-                  certificates={cvData.certificates}
-                  addCertificate={addCertificate}
-                  updateCertificate={updateCertificate}
-                  removeCertificate={removeCertificate}
-                />
-              )}
-              <StepNavigation
-                step={step}
-                onPrev={prevStep}
-                onNext={nextStep}
-                onCancel={
-                  step === 1
-                    ? resetPersonalInfo
-                    : step === 2
-                    ? resetExperience
-                    : step === 3
-                    ? resetEducation
-                    : resetSkillsAndMore
-                }
-                onSubmit={() => setShowSuccess(true)}
-                isLastStep={step === 4}
-                isFirstStep={step === 1}
-                isGenerating={isGenerating}
-                isFormValid={isFormValid(cvData)}
-              />
-            </div>
+          <div className="flex justify-center bg-[#F2F7F7] items-center gap-3 text-primary py-4">
+            <span className="relative inline-block p-4 rounded-full w-[30px] h-[30px] bg-[#076A6012]">
+              <FaCertificate className="text-xl absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-primary" />
+              <FaCheck className="text-[10px] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white" />
+            </span>
+            <h2 className="m-0 font-[500]">
+              Optimized for Applicant Tracking Systems
+            </h2>
+          </div>
 
-            {/* CV Preview  */}
-            <div className="bg-white rounded-xl w-full shadow-xl border border-gray-100 h-fit">
-              <div className="flex items-center justify-between p-6 border-b border-gray-200">
-                <h2 className="text-2xl font-semibold text-gray-800 flex items-center gap-2">
-                  <FaCode className="w-6 h-6 text-primary" />
-                  CV Preview
-                </h2>
-                {/* Action Buttons moved here */}
-                <div className="flex items-center gap-2">
-                  
-                  <button
-                    onClick={downloadPDF}
-                    disabled={!isFormValid(cvData) || isGenerating}
-                    className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-                  >
-                    {isGenerating ? (
-                      <FaSpinner className="w-4 h-4 animate-spin" />
-                    ) : (
-                      <FaDownload className="w-4 h-4" />
-                    )}
-                    {isGenerating ? "Generating..." : "Download PDF"}
-                  </button>
-                </div>
-              </div>
-              <div className="p-0">
-                <div>
-                  <CVPreview
-                    cvData={cvData}
-                    formatExperienceDuration={formatExperienceDuration}
-                    formatEducationDuration={formatEducationDuration}
-                    isFormValid={isFormValid(cvData)}
-                    cvRef={cvRef}
+          <div className="container">
+            <div className="flex justify-center gap-8 items-start mt-16">
+              {/* Step Form */}
+              <div className="w-full h-fit mb-8">
+                {step === 1 && (
+                  <PersonalInfoStep
+                    personalInfo={cvData.personalInfo}
+                    updatePersonalInfo={updatePersonalInfo}
+                    countries={countries}
+                    cities={allCities}
+                    filteredCities={filteredCities}
+                    onCountryChange={handleCountryChange}
+                    onCityChange={handleCityChange}
+                    onImageChange={handleImageChange}
+                    onAddSocialLink={handleAddSocialLink}
+                    onRemoveSocialLink={handleRemoveSocialLink}
+                    onSocialLinkChange={handleSocialLinkChange}
+                    onRemoveImage={handleRemoveImage}
                   />
+                )}
+                {step === 2 && (
+                  <ExperienceSkillsStep
+                    experience={cvData.experience}
+                    addExperience={addExperience}
+                    updateExperience={updateExperience}
+                    removeExperience={removeExperience}
+                    skills={cvData.skills}
+                    addSkill={addSkill}
+                    updateSkill={updateSkill}
+                    removeSkill={removeSkill}
+                    countries={countries}
+                    cities={allCities}
+                    filteredCities={filteredCities}
+                    countryCityMap={countryCityMap}
+                  />
+                )}
+                {step === 3 && (
+                  <EducationStep
+                    education={cvData.education}
+                    addEducation={addEducation}
+                    updateEducation={updateEducation}
+                    removeEducation={removeEducation}
+                    countries={countries}
+                    cities={allCities}
+                  />
+                )}
+                {step === 4 && (
+                  <LanguagesCertificatesStep
+                    languages={cvData.languages}
+                    addLanguage={addLanguage}
+                    updateLanguage={updateLanguage}
+                    removeLanguage={removeLanguage}
+                    certificates={cvData.certificates}
+                    addCertificate={addCertificate}
+                    updateCertificate={updateCertificate}
+                    removeCertificate={removeCertificate}
+                  />
+                )}
+                <StepNavigation
+                  step={step}
+                  onPrev={prevStep}
+                  onNext={nextStep}
+                  onCancel={
+                    step === 1
+                      ? resetPersonalInfo
+                      : step === 2
+                      ? resetExperience
+                      : step === 3
+                      ? resetEducation
+                      : resetSkillsAndMore
+                  }
+                  onSubmit={() => setShowSuccess(true)}
+                  isLastStep={step === 4}
+                  isFirstStep={step === 1}
+                  isGenerating={isGenerating}
+                  isFormValid={isFormValid(cvData)}
+                />
+              </div>
+
+              {/* CV Preview  */}
+              <div className="bg-white rounded-xl w-full shadow-xl border border-gray-100 h-fit">
+                <div className="flex items-center justify-between p-6 border-b border-gray-200">
+                  <h3 className="text-2xl font-semibold text-gray-800 flex items-center gap-2">
+                    <FaCode className="w-6 h-6 text-primary" />
+                    CV Preview
+                  </h3>
+                  {/* Action Buttons moved here */}
+                  <div className="flex items-center gap-2">
+                    <button
+                      onClick={downloadPDF}
+                      disabled={!isFormValid(cvData) || isGenerating}
+                      className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                    >
+                      {isGenerating ? (
+                        <FaSpinner className="w-4 h-4 animate-spin" />
+                      ) : (
+                        <FaDownload className="w-4 h-4" />
+                      )}
+                      {isGenerating ? "Generating..." : "Download PDF"}
+                    </button>
+                  </div>
+                </div>
+                <div className="p-0">
+                  <div>
+                    <CVPreview
+                      cvData={cvData}
+                      formatExperienceDuration={formatExperienceDuration}
+                      formatEducationDuration={formatEducationDuration}
+                      isFormValid={isFormValid(cvData)}
+                      cvRef={cvRef}
+                    />
+                  </div>
                 </div>
               </div>
             </div>
@@ -585,4 +622,4 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default BuildCV;

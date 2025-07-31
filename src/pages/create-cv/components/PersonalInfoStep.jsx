@@ -16,9 +16,16 @@ import {
 } from "react-icons/fa";
 import { GiEarthAfricaEurope } from "react-icons/gi";
 import { IoDocumentText } from "react-icons/io5";
-import Input from "../../../components/ui/Input";
-import CountrySelect from "../../pages/Profile/components/CountrySelect";
-import CitySelect from "../../pages/Profile/components/CitySelect";
+import Input from "../../../../components/ui/Input";
+const CountrySelect = dynamic(
+  () => import("../../Profile/components/CountrySelect"),
+  { ssr: false }
+);
+const CitySelect = dynamic(
+  () => import("../../Profile/components/CitySelect"),
+  { ssr: false }
+);
+
 import {
   Select as ShadcnSelect,
   SelectTrigger,
@@ -26,6 +33,7 @@ import {
   SelectContent,
   SelectItem,
 } from "@/components/ui/select";
+import dynamic from "next/dynamic";
 
 const socialOptions = [
   {
@@ -232,7 +240,8 @@ const PersonalInfoStep = ({
                 );
                 const usedTypes = personalInfo.socialLinks.map((l) => l.type);
                 const availableOptions = socialOptions.filter(
-                  (opt) => !usedTypes.includes(opt.value) || opt.value === link.type
+                  (opt) =>
+                    !usedTypes.includes(opt.value) || opt.value === link.type
                 );
                 return (
                   <div key={idx} className="flex gap-2 items-center">
@@ -242,9 +251,7 @@ const PersonalInfoStep = ({
                         onSocialLinkChange(idx, "type", val)
                       }
                     >
-                      <SelectTrigger
-                        className="w-1/2 px-6 py-5 text-[#617A78] border border-transparent rounded-full bg-[#F3F7F7] transition-all focus:bg-white focus:border-ring focus:outline-none pl-11"
-                      >
+                      <SelectTrigger className="w-1/2 px-6 py-5 text-[#617A78] border border-transparent rounded-full bg-[#F3F7F7] transition-all focus:bg-white focus:border-ring focus:outline-none pl-11">
                         {/* Left icon placeholder for alignment */}
                         <span className="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none"></span>
                         <SelectValue placeholder="Select">
@@ -259,7 +266,10 @@ const PersonalInfoStep = ({
                       <SelectContent>
                         {availableOptions.map((opt) => (
                           <SelectItem key={opt.value} value={opt.value}>
-                            <span className="flex items-center">{opt.icon}{opt.label}</span>
+                            <span className="flex items-center">
+                              {opt.icon}
+                              {opt.label}
+                            </span>
                           </SelectItem>
                         ))}
                       </SelectContent>

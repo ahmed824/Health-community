@@ -1,3 +1,4 @@
+"use client"
 import React from "react";
 import {
   FaGraduationCap,
@@ -6,9 +7,16 @@ import {
   FaUniversity,
   FaCalendarAlt,
 } from "react-icons/fa";
-import Input from "../../../components/ui/Input";
-import CountrySelect from "../../pages/Profile/components/CountrySelect";
-import CitySelect from "../../pages/Profile/components/CitySelect";
+import { Input } from "../../../../components/ui";
+const CountrySelect = dynamic(
+  () => import("../../Profile/components/CountrySelect"),
+  { ssr: false }
+);
+const CitySelect = dynamic(
+  () => import("../../Profile/components/CitySelect"),
+  { ssr: false }
+);
+
 import {
   Select as ShadcnSelect,
   SelectTrigger,
@@ -17,6 +25,7 @@ import {
   SelectItem,
 } from "@/components/ui/select";
 import { FaRegEnvelope } from "react-icons/fa6";
+import dynamic from "next/dynamic";
 
 const months = [
   { value: "01", label: "January" },
@@ -61,10 +70,7 @@ const EducationStep = ({
       </button>
     </div>
     {education.map((edu) => (
-      <div
-        key={edu.id}
-        className="border border-gray-200 rounded-lg p-4 mb-4 "
-      >
+      <div key={edu.id} className="border border-gray-200 rounded-lg p-4 mb-4 ">
         <div className="flex justify-between items-start mb-3 gap-4 flex-wrap">
           <div className="flex-1 space-y-3">
             <Input

@@ -3,8 +3,7 @@ import "./globals.css";
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import Header from "../../components/layout/Header";
-import Footer from "../../components/layout/Footer";
+import ClientLayout from "./ClientLayout";
 
 const petrona = Petrona({
   variable: "--font-petrona",
@@ -34,11 +33,9 @@ export const viewport = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" dir="ltr" className={`${petrona.variable} ${inter.variable}`}>
+    <html className={`${petrona.variable} ${inter.variable} `}>
       <body className="antialiased bg-background text-foreground">
-        <Header />
-        {children}
-        <Footer />
+        <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
   );

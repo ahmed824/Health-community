@@ -3,44 +3,79 @@
 import { useState, useEffect } from "react";
 import { FiSearch, FiX } from "react-icons/fi";
 import Link from "next/link";
-import { navigation } from "@/lib/constants";
+import { getNavigation } from "@/lib/constants";
+import { useTranslation } from "react-i18next";
 
-export default function SearchModal({ 
-  isOpen, 
-  onClose, 
-  currentGradient 
-}) {
+export default function SearchModal({ isOpen, onClose, currentGradient }) {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedResultIndex, setSelectedResultIndex] = useState(-1);
   const [isSearching, setIsSearching] = useState(false);
-
-  // Mock search results - replace with actual search logic
+  const { i18n } = useTranslation();
+  const navigation = getNavigation(i18n.language);
   const searchResults = [
-    { title: "Health Tips", href: "/articles/health-tips", category: "Articles" },
-    { title: "Community Guidelines", href: "/community/guidelines", category: "Community" },
-    { title: "Wellness Resources", href: "/resources/wellness", category: "Resources" },
-    { title: "Medical Information", href: "/articles/medical", category: "Articles" },
-    { title: "Mental Health Support", href: "/articles/mental-health", category: "Articles" },
-    { title: "Nutrition Guide", href: "/resources/nutrition", category: "Resources" },
-    { title: "Fitness Community", href: "/community/fitness", category: "Community" },
-    { title: "Medical Research", href: "/articles/research", category: "Articles" },
-  ].filter(item =>
-    item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    item.category.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+    {
+      title: "Health Tips",
+      href: "/articles/health-tips",
+      category: "Articles",
+    },
+    {
+      title: "Community Guidelines",
+      href: "/community/guidelines",
+      category: "Community",
+    },
+    {
+      title: "Wellness Resources",
+      href: "/resources/wellness",
+      category: "Resources",
+    },
+    {
+      title: "Medical Information",
+      href: "/articles/medical",
+      category: "Articles",
+    },
+    {
+      title: "Mental Health Support",
+      href: "/articles/mental-health",
+      category: "Articles",
+    },
+    {
+      title: "Nutrition Guide",
+      href: "/resources/nutrition",
+      category: "Resources",
+    },
+    {
+      title: "Fitness Community",
+      href: "/community/fitness",
+      category: "Community",
+    },
+    {
+      title: "Medical Research",
+      href: "/articles/research",
+      category: "Articles",
+    },
+  ]
+    .map((item) => ({
+      ...item,
+      href: `/${i18n.language}${item.href}`, // 👈 Prefix each link with the language
+    }))
+    .filter(
+      (item) =>
+        item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        item.category.toLowerCase().includes(searchQuery.toLowerCase())
+    );
 
   // Prevent body scrolling when modal is open
   useEffect(() => {
     if (isOpen) {
-      document.body.style.overflow = 'hidden';
-      document.body.style.height = '100vh';
+      document.body.style.overflow = "hidden";
+      document.body.style.height = "100vh";
     } else {
-      document.body.style.overflow = 'unset';
-      document.body.style.height = 'auto';
+      document.body.style.overflow = "unset";
+      document.body.style.height = "auto";
     }
     return () => {
-      document.body.style.overflow = 'unset';
-      document.body.style.height = 'auto';
+      document.body.style.overflow = "unset";
+      document.body.style.height = "auto";
     };
   }, [isOpen]);
 
@@ -63,24 +98,24 @@ export default function SearchModal({
     if (!isOpen) return;
 
     switch (e.key) {
-      case 'Escape':
+      case "Escape":
         onClose();
         setSearchQuery("");
         setSelectedResultIndex(-1);
         break;
-      case 'ArrowDown':
+      case "ArrowDown":
         e.preventDefault();
-        setSelectedResultIndex(prev =>
+        setSelectedResultIndex((prev) =>
           prev < searchResults.length - 1 ? prev + 1 : 0
         );
         break;
-      case 'ArrowUp':
+      case "ArrowUp":
         e.preventDefault();
-        setSelectedResultIndex(prev =>
+        setSelectedResultIndex((prev) =>
           prev > 0 ? prev - 1 : searchResults.length - 1
         );
         break;
-      case 'Enter':
+      case "Enter":
         if (selectedResultIndex >= 0 && searchResults[selectedResultIndex]) {
           e.preventDefault();
           window.location.href = searchResults[selectedResultIndex].href;
@@ -121,7 +156,9 @@ export default function SearchModal({
           onClick={(e) => e.stopPropagation()}
         >
           {/* Search Header */}
-          <div className={`flex justify-between items-center p-6 border-b border-gray-200/50 dark:border-gray-700/50 bg-gradient-to-r ${currentGradient}`}>
+          <div
+            className={`flex justify-between items-center p-6 border-b border-gray-200/50 dark:border-gray-700/50 bg-gradient-to-r ${currentGradient}`}
+          >
             <div className="flex items-center space-x-4 flex-1">
               <form onSubmit={handleSearchSubmit} className="flex-1 relative">
                 <div className="relative">
@@ -157,9 +194,13 @@ export default function SearchModal({
             </div>
             <div className="flex items-center space-x-3 ml-4">
               <div className="hidden sm:flex items-center space-x-2 text-xs text-gray-500 dark:text-gray-400">
-                <kbd className="px-2 py-1 bg-gray-100 dark:bg-gray-700 rounded-md text-xs font-mono">Ctrl + K</kbd>
+                <kbd className="px-2 py-1 bg-gray-100 dark:bg-gray-700 rounded-md text-xs font-mono">
+                  Ctrl + K
+                </kbd>
                 <span>to search</span>
-                <kbd className="px-2 py-1 bg-gray-100 dark:bg-gray-700 rounded-md text-xs font-mono">Esc</kbd>
+                <kbd className="px-2 py-1 bg-gray-100 dark:bg-gray-700 rounded-md text-xs font-mono">
+                  Esc
+                </kbd>
                 <span>to close</span>
               </div>
               <button
@@ -205,21 +246,25 @@ export default function SearchModal({
                           setSearchQuery("");
                           setSelectedResultIndex(-1);
                         }}
-                        className={`block p-4 border rounded-xl transition-all duration-200 group search-result-hover ${index === selectedResultIndex
-                          ? 'bg-gradient-to-r from-primary/10 to-primary/5 border-primary/30 scale-[1.02] shadow-lg'
-                          : 'bg-white/50 dark:bg-gray-800/50 border-gray-200/50 dark:border-gray-700/50 hover:bg-gradient-to-r hover:from-primary/5 hover:to-primary/2 hover:scale-[1.01]'
-                          }`}
+                        className={`block p-4 border rounded-xl transition-all duration-200 group search-result-hover ${
+                          index === selectedResultIndex
+                            ? "bg-gradient-to-r from-primary/10 to-primary/5 border-primary/30 scale-[1.02] shadow-lg"
+                            : "bg-white/50 dark:bg-gray-800/50 border-gray-200/50 dark:border-gray-700/50 hover:bg-gradient-to-r hover:from-primary/5 hover:to-primary/2 hover:scale-[1.01]"
+                        }`}
                         onMouseEnter={() => setSelectedResultIndex(index)}
                         style={{
-                          animationDelay: `${index * 50}ms`
+                          animationDelay: `${index * 50}ms`,
                         }}
                       >
                         <div className="flex items-center justify-between">
                           <div className="flex-1">
-                            <h4 className={`font-medium transition-colors ${index === selectedResultIndex
-                              ? 'text-primary'
-                              : 'text-gray-900 dark:text-gray-100 group-hover:text-primary'
-                              }`}>
+                            <h4
+                              className={`font-medium transition-colors ${
+                                index === selectedResultIndex
+                                  ? "text-primary"
+                                  : "text-gray-900 dark:text-gray-100 group-hover:text-primary"
+                              }`}
+                            >
                               {result.title}
                             </h4>
                             <div className="flex items-center space-x-2 mt-1">
@@ -231,10 +276,13 @@ export default function SearchModal({
                               </span>
                             </div>
                           </div>
-                          <div className={`transition-all duration-200 ${index === selectedResultIndex
-                            ? 'opacity-100 scale-110'
-                            : 'opacity-0 group-hover:opacity-100 scale-100'
-                            }`}>
+                          <div
+                            className={`transition-all duration-200 ${
+                              index === selectedResultIndex
+                                ? "opacity-100 scale-110"
+                                : "opacity-0 group-hover:opacity-100 scale-100"
+                            }`}
+                          >
                             <FiSearch className="w-4 h-4 text-primary" />
                           </div>
                         </div>
@@ -254,16 +302,20 @@ export default function SearchModal({
                     Try searching with different keywords
                   </p>
                   <div className="flex flex-wrap justify-center gap-2">
-                    <span className="text-xs text-gray-400 dark:text-gray-500">Suggestions:</span>
-                    {['health', 'community', 'articles', 'resources'].map((suggestion) => (
-                      <button
-                        key={suggestion}
-                        onClick={() => setSearchQuery(suggestion)}
-                        className="text-xs px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 rounded-full hover:bg-primary/10 hover:text-primary transition-colors"
-                      >
-                        {suggestion}
-                      </button>
-                    ))}
+                    <span className="text-xs text-gray-400 dark:text-gray-500">
+                      Suggestions:
+                    </span>
+                    {["health", "community", "articles", "resources"].map(
+                      (suggestion) => (
+                        <button
+                          key={suggestion}
+                          onClick={() => setSearchQuery(suggestion)}
+                          className="text-xs px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 rounded-full hover:bg-primary/10 hover:text-primary transition-colors"
+                        >
+                          {suggestion}
+                        </button>
+                      )
+                    )}
                   </div>
                 </div>
               )
@@ -276,7 +328,8 @@ export default function SearchModal({
                   Search Health Community
                 </h3>
                 <p className="text-gray-500 dark:text-gray-400 mb-8 max-w-md mx-auto">
-                  Find articles, community discussions, and resources to support your health journey
+                  Find articles, community discussions, and resources to support
+                  your health journey
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-2xl mx-auto">
                   {navigation.map((item) => (
@@ -299,4 +352,4 @@ export default function SearchModal({
       </div>
     </div>
   );
-} 
+}

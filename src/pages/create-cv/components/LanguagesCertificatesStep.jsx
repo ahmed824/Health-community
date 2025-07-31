@@ -1,7 +1,7 @@
 import React from "react";
 import { FaPlus, FaMinus, FaCertificate, FaLanguage, FaUser, FaLink } from "react-icons/fa";
 import { IoDocumentText } from "react-icons/io5";
-import Input from "../../../components/ui/Input";
+import { Input } from "../../../../components/ui";  
 import { Select } from "@/components/ui/select"; 
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { FaTrash } from "react-icons/fa";

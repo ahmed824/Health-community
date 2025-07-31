@@ -32,43 +32,27 @@ export const siteConfig = {
   },
 };
 
-export const navigation = [
-  {
-    title: "Home",
-    href: "/",
-  },
-  {
-    title: "Articles",
-    href: "/articles",
-  },
-  {
-    title: "Community",
-    href: "/community",
-  },
-  {
-    title: "Resources",
-    href: "/resources",
-  },
-  {
-    title: "About",
-    href: "/about",
-  },
+export const getNavigation = (lang) => [
+  { title: "Home", href: `/${lang}/` },
+  { title: "Articles", href: `/${lang}/articles` },
+  { title: "Community", href: `/${lang}/community` },
+  { title: "Resources", href: `/${lang}/resources` },
+  { title: "About", href: `/${lang}/about` },
 ];
 
-export const footerLinks = {
+export const getFooterLinks = (lang) => ({
   company: [
-    { name: "home", href: "/" },
-    { name: "about us", href: "/about-us" },
-    { name: "courses", href: "/courses" },
-    { name: "jobs", href: "/jobs" },
-    { name: "blogs", href: "/blogs" },
+    { name: "home", href: `/${lang}/` },
+    { name: "about us", href: `/${lang}/about-us` },
+    { name: "courses", href: `/${lang}/courses` },
+    { name: "jobs", href: `/${lang}/jobs` },
+    { name: "blogs", href: `/${lang}/blogs` },
   ],
   resources: [
-    { name: "Health terms and conditions", href: "/conditions" },
-    { name: "privacy policy", href: "/privacy-policy" },
-    { name: "contact us", href: "/contact" },
-    { name: "login", href: "/login" },
-    { name: "sign up", href: "/sign-up" },
+    { name: "Health terms and conditions", href: `/${lang}/conditions` },
+    { name: "privacy policy", href: `/${lang}/privacy-policy` },
+    { name: "contact us", href: `/${lang}/contact` },
+    { name: "login", href: `/${lang}/login` },
+    { name: "sign up", href: `/${lang}/sign-up` },
   ],
-};
-
+});

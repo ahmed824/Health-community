@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Button from "../../ui/Button";
+import { useTranslation } from "react-i18next";
 
 export default function FeaturesText({
   isButton,
@@ -7,6 +8,8 @@ export default function FeaturesText({
   subheading,
   description,
 }) {
+  const { i18n } = useTranslation();
+
   return (
     <div className="text-center md:text-left mt-16 md:mt-0">
       <h2 className="text-[18px] capitalize text-primary font-bold mb-[30px] ">
@@ -20,8 +23,8 @@ export default function FeaturesText({
       </p>
       {isButton && (
         <div className="flex flex-col sm:flex-row gap-4 mt-8 justify-start">
-          <Button variant="outline" asChild size="lg">
-            <Link href="/about">explore community</Link>
+          <Button variant="outline" asChild size="lg" className="bg-white">
+            <Link href={`/${i18n.language}/about`}>explore community</Link>
           </Button>
         </div>
       )}

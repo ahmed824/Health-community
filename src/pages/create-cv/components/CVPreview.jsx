@@ -1,8 +1,12 @@
+"use client";
 import Link from "next/link";
 import React from "react";
 import { FaExternalLinkAlt } from "react-icons/fa";
 import Image from "next/image";
-import ImagePreviewModal from "./ImagePreviewModal";
+import dynamic from "next/dynamic";
+const ImagePreviewModal = dynamic(() => import("./ImagePreviewModal"), {
+  ssr: false,
+});
 
 const CVPreview = ({
   cvData,

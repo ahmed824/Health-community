@@ -2,26 +2,43 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter, usePathname } from "next/navigation";
 import {
   Dialog,
   DialogContent,
   DialogTitle,
   DialogClose,
 } from "@/components/ui/dialog";
+import { useTranslation } from "react-i18next";
 
 const Logo = "/images/footer-logo.svg";
 const Globe = "/globe.svg";
 
 const navLinks = [
-  { title: "Home", href: "/" },
-  { title: "About Us", href: "/about" },
-  { title: "Courses", href: "/courses" },
-  { title: "Jobs", href: "/jobs" },
-  { title: "Blogs", href: "/blogs" },
-  { title: "Contact Us", href: "/contact" },
+  { key: "home", href: "/" },
+  { key: "about", href: "/about" },
+  { key: "courses", href: "/courses" },
+  { key: "jobs", href: "/jobs" },
+  { key: "blogs", href: "/blogs" },
+  { key: "contact", href: "/contact" },
 ];
 
 export default function MobileNavigation({ isOpen, onClose }) {
+  const { t, i18n } = useTranslation();
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const handleLanguageChange = (lang) => {
+    const newLang = lang === "en" ? "ar" : "en";
+    // Get the current path without the language segment
+    const currentPath = pathname.split("/").slice(2).join("/") || "";
+    // Construct the new URL with the new language
+    const newPath = `/${newLang}/${currentPath}`;
+    i18n.changeLanguage(newLang);
+    router.push(newPath);
+    onClose();
+  };
+
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent
@@ -30,14 +47,12 @@ export default function MobileNavigation({ isOpen, onClose }) {
         onEscapeKeyDown={onClose}
         showCloseButton={false}
       >
-        {/* Absolute Centered Circle Background */}
         <div className="absolute pointer-events-none left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-0 w-[600px] h-[600px] rounded-full border-[18px] border-[#076A6005] bg-[radial-gradient(50%_50%_at_50%_50%,rgba(255,255,255,0.1)_0%,rgba(255,255,255,0)_100%)]" />
-        {/* Custom Close Button */}
         <DialogClose
           asChild
           className="absolute top-10 border border-white right-12 z-50 cursor-pointer bg-transparent p-4 rounded-full hover:bg-white/10 focus:outline-none"
         >
-          <button onClick={onClose} aria-label="Close menu">
+          <button onClick={onClose} aria-label={t("close_menu")}>
             <svg
               width="20"
               height="20"
@@ -63,43 +78,33 @@ export default function MobileNavigation({ isOpen, onClose }) {
             </svg>
           </button>
         </DialogClose>
-        {/* Visually hidden title for accessibility */}
-        <DialogTitle className="sr-only">Mobile Navigation Menu</DialogTitle>
-        {/* Logo */}
-        {/* <div className="flex items-center space-x-2 mb-8 mt-2">
-          <Image
-            src={Logo}
-            alt="Health Community Logo"
-            width={200}
-            height={80}
-          />
-        </div> */}
-        {/* Navigation Links */}
+        <DialogTitle className="sr-only">{t("mobile_nav_menu")}</DialogTitle>
         <nav className="flex flex-col items-center space-y-6 flex-1 justify-center w-full font-bold">
-          {navLinks.map((item, idx) => (
+          {navLinks.map((item) => (
             <Link
               key={item.href}
-              href={item.href}
-              className={`text-[#FFFFFFB2] w-fit text-[62px] font-bold mb-0 transition-colors text-center hover:text-white `}
+              href={`/${i18n.language}${item.href}`}
+              className="text-[#FFFFFFB2] w-fit text-[62px] font-bold mb-0 transition-colors text-center hover:text-white"
               onClick={onClose}
             >
-              {item.title}
+              {t(`nav.${item.key}`)}
             </Link>
           ))}
-          {/* Create Cv Button */}
           <Link
-            href="/create-cv"
-            className="mt-8 px-60 py-1 rounded-full flex justify-center bg-white text-primary whitespace-nowrap  text-[62px] font-bold shadow transition hover:bg-gray-100 w-full max-w-xs text-center"
+            href={`/${i18n.language}/create-cv`}
+            className="mt-8 px-60 py-1 rounded-full flex justify-center bg-white text-primary whitespace-nowrap text-[62px] font-bold shadow transition hover:bg-gray-100 w-full max-w-xs text-center"
             onClick={onClose}
           >
-            Create Cv
+            {t("create_cv")}
           </Link>
-          {/* Language Switcher */}
           <div className="flex items-center space-x-2 mt-8">
-            <Image src={Globe} alt="Globe" width={24} height={24} />
-            <span className="text-lg text-[62px] text-[#FFFFFFB2] font-normal">
-              Arabic
-            </span>
+            <Image src={Globe} alt={t("language")} width={24} height={24} />
+            <button
+              onClick={() => handleLanguageChange(i18n.language)}
+              className="text-lg text-[62px] cursor-pointer text-[#FFFFFFB2] font-normal"
+            >
+              {i18n.language === "en" ? t("arabic") : t("english")}
+            </button>
           </div>
         </nav>
       </DialogContent>

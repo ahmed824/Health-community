@@ -5,7 +5,7 @@ import { MdMedicalServices } from "react-icons/md";
 import { FaIdBadge } from "react-icons/fa";
 import CountrySelect from "../../src/pages/Profile/components/CountrySelect";
 import CitySelect from "../../src/pages/Profile/components/CitySelect";
-import { Select } from "../ui/Select";
+import { Select } from "@/components/ui/select";  
 
 const modeOptions = [
   { value: "", label: "Mode" },

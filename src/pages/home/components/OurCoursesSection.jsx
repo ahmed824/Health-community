@@ -8,6 +8,7 @@ import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import CustomSwiperNav from "../../../../components/layout/CustomSwiperNav";
 import { DotsLoader, SkeletonLoader } from "../../../../components/ui";
+import { useTranslation } from "react-i18next";
 
 const doctors = [
   {
@@ -83,7 +84,8 @@ export default function OurCoursesSection() {
   const [isLoading, setIsLoading] = useState(true);
   const prevRef = useRef(null);
   const nextRef = useRef(null);
-
+ 
+  const { i18n } = useTranslation();
   useEffect(() => {
     // Simulate loading time for courses
     const timer = setTimeout(() => {
@@ -138,10 +140,10 @@ export default function OurCoursesSection() {
               explore our courses
             </h3>
           </div>
-          <Button variant="destructive" asChild className={"z-20"} >
+          <Button variant="destructive" asChild className="z-20">
             <Link
-              className="w-[132px] z-20  py-8 flex capitalize justify-center items-center"
-              href="/courses"
+              href={`/${i18n.language}/courses`}
+              className="w-[132px] z-20 py-8 flex capitalize justify-center items-center"
             >
               explore all
             </Link>
@@ -154,11 +156,16 @@ export default function OurCoursesSection() {
             <div className="space-y-8">
               <div className="flex items-center justify-center space-x-3 py-12">
                 <DotsLoader size="large" speed="normal" color="white" />
-                <span className="text-white font-medium text-lg">Loading courses...</span>
+                <span className="text-white font-medium text-lg">
+                  Loading courses...
+                </span>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {[1, 2, 3].map((i) => (
-                  <div key={i} className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
+                  <div
+                    key={i}
+                    className="bg-white/10 backdrop-blur-sm rounded-lg p-6"
+                  >
                     <SkeletonLoader type="card" />
                   </div>
                 ))}
@@ -193,7 +200,10 @@ export default function OurCoursesSection() {
                   pauseOnMouseEnter: true,
                 }}
                 loop={true}
-                navigation={{ prevEl: prevRef.current, nextEl: nextRef.current }}
+                navigation={{
+                  prevEl: prevRef.current,
+                  nextEl: nextRef.current,
+                }}
                 pagination={{ clickable: true }}
                 breakpoints={{
                   640: { slidesPerView: 1 },
@@ -215,8 +225,7 @@ export default function OurCoursesSection() {
                   return (
                     <SwiperSlide className={`p-4 py-10 ${blurClass}`} key={idx}>
                       <div className={disableClass}>
-                      <DoctorCard {...doctor} mode="primary" key={idx} />
-
+                        <DoctorCard {...doctor} mode="primary" key={idx} />
                       </div>
                     </SwiperSlide>
                   );

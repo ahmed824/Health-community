@@ -26,7 +26,7 @@ function BreadCramp({
           className="w-auto absolute left-0 top-0 pointer-events-none z-10"
         />
         <div className="relative z-10 flex flex-col gap-4 mt-18 max-w-lg">
-          <h1 className="text-3xl font-bold text-white">{heading}</h1>
+          <h1 className="text-3xl font-bold capitalize text-white">{heading}</h1>
           <p className="text-lg font-normal max-w-11/12 capitalize text-[#FFFFFF99]">
             {paragraph}
           </p>

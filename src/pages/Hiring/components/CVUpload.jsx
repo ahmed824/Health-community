@@ -52,7 +52,7 @@ export default function CVUpload({ cvFileName, fileInputRef, handleChange, handl
         <span className="mt-5 text-[16px] text-[#617A78]">
           No CV? No problem — we’ll help you create one.{' '}
           <Link
-            href="/build-CV"
+            href="/create-cv"
             className="text-primary hover:underline font-bold"
           >
             Start now
