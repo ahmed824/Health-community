@@ -1,0 +1,67 @@
+const doctors = [
+    {
+        name: "Dr. Michael Carter",
+        specialty: "Cardiologist",
+        image: "/images/doctors/img1.png",
+        avatar: "/images/doctors/doctor.png",
+        details:
+            "Its a long established fact that a reader will be distracted the readable content ..",
+        link: "/doctors/michael-carter",
+        remotely: true,
+        price: 120,
+        fromDate: "31 june",
+        toDate: "31 june",
+    },
+    {
+        name: "Dr. Lisa Doe",
+        specialty: "Psychologist",
+        image: "/images/doctors/img2.png",
+        avatar: "/images/doctors/doctor.png",
+        details:
+            "Specialist in mental health and wellness. Focused on holistic patient care and therapy.",
+        link: "/doctors/lisa-doe",
+        remotely: false,
+        price: 100,
+        fromDate: "231 june",
+        toDate: "31 june",
+    },
+    {
+        name: "Dr. Steven Jacob",
+        specialty: "Anesthesiologist",
+        image: "/images/doctors/img3.png",
+        avatar: "/images/doctors/doctor.png",
+        details:
+            "Experienced in pain management and surgical anesthesia. Dedicated to patient safety.",
+        link: "/doctors/steven-jacob",
+        remotely: true,
+        price: 150,
+        fromDate: "31 june",
+        toDate: "31 june",
+    },
+    {
+        name: "Dr. Emma Button",
+        specialty: "Dermatologist",
+        image: "/images/doctors/img2.png",
+        avatar: "/images/doctors/doctor.png",
+        details:
+            "Expert in skin care and dermatological treatments. Passionate about patient education.",
+        link: "/doctors/emma-button",
+        remotely: false,
+        price: 110,
+        fromDate: "31 june",
+        toDate: "31 june",
+    },
+    {
+        name: "Dr. Ahmed Abdo",
+        specialty: "Dermatologist",
+        image: "/images/doctors/img2.png",
+        avatar: "/images/doctors/doctor.png",
+        details:
+            "Expert in skin care and dermatological treatments. Passionate about patient education.",
+        link: "/doctors/emma-button",
+        remotely: false,
+        price: 110,
+        fromDate: "31 june",
+        toDate: "31 june",
+    },
+];

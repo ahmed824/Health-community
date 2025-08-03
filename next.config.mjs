@@ -18,19 +18,8 @@ const nextConfig = {
       },
     ];
   },
-  // ✅ Enable SWC minification (very fast)
-  swcMinify: true,
-
-  // ✅ Transpile specific packages only if using monorepo or shared libs
-  // transpilePackages: ['ui', 'shared'],
-
-  // ✅ Experimental turbo mode (Next.js 13.4+)
-  experimental: {
-    turbo: true, // Great for large projects
-    // optimizePackageImports: true // (if using many libraries like lodash)
-  },
-
-  // ✅ Disabling source maps in dev can boost speed
+ 
   productionBrowserSourceMaps: false,
 };
+
 export default nextConfig;

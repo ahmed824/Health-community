@@ -1,5 +1,5 @@
 import React, { Suspense, lazy } from "react";
-import { DotsLoader, SkeletonLoader } from "../../../components/ui";
+import { DotsLoader } from "../../../components/ui";
 import { CounterSkeleton } from "./components/HeroSkeleton";
 
 const HeroSection = lazy(() => import("./components/HeroSection"));

@@ -1,5 +1,5 @@
 export const siteConfig = {
-  name: "Health Community Co.",
+  name: "Health Community ",
   description: "A comprehensive health community platform for wellness and medical information",
   url: "https://health-community.com",
   ogImage: "https://health-community.com/og.jpg",

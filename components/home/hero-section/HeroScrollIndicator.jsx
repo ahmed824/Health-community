@@ -45,7 +45,7 @@ export default function HeroScrollIndicator() {
     >
       <span
         ref={scrollTextRef}
-        className="text-primary mb-[10px] mr-[50px] text-lg font-semibold tracking-widest  writing-vertical-lr"
+        className="text-primary mb-[10px] mr-[50px] text-sm md:text-lg font-semibold tracking-widest  writing-vertical-lr"
         style={{ writingMode: "vertical-lr", textOrientation: "mixed", letterSpacing: "5px" }}
       >
         SCROLL DOWN

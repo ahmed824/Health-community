@@ -21,11 +21,11 @@ const dotPositions = [
 export default function OrbitAnimation() {
   return (
     <div className="orbit relative w-full h-full float-left">
-      {/* Decorative dots */}
+      {/* Decorative dots - hidden on mobile for cleaner look */}
       {dotPositions.map((pos, i) => (
         <div
           key={i}
-          className="orbit-dot absolute w-1.5 h-1.5 rounded-full bg-[#076A60] z-10"
+          className="orbit-dot absolute w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-[#076A60] z-10 hidden sm:block"
           style={{ top: pos.top, left: pos.left }}
         />
       ))}
@@ -38,6 +38,7 @@ export default function OrbitAnimation() {
               width={166}
               height={166}
               className="w-full h-full rounded-full"
+              priority
             />
           </span>
         </li>
@@ -46,7 +47,7 @@ export default function OrbitAnimation() {
             <ul className={`ring-${i}`}>
               {pair.map((Item, j) => (
                 <li key={j}>
-                  <span className="orbit-img flex items-center justify-center bg-white rounded-full w-[50px] h-[50px] overflow-hidden">
+                  <span className="orbit-img flex items-center justify-center bg-white rounded-full w-[32px] h-[32px] sm:w-[40px] sm:h-[40px] md:w-[50px] md:h-[50px] overflow-hidden shadow-sm">
                     {typeof Item === "string" ? (
                       <Image
                         src={Item}

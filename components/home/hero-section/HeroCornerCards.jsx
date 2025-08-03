@@ -18,9 +18,11 @@ export default function HeroCornerCards() {
       link: `/${i18n.language}/hiring`, // Dynamic link with language
       linkText: t("hero_cards.medical"), // Translated text
       subText: t("hero_cards.hiring"), // Translated text
-      positionClass: "top-16 left-16 rounded-tl-3xl border-l-8 skew-y-[-20deg] card-skew-fix-tl",
+      positionClass:
+        "top-16 left-16 rounded-tl-3xl border-l-8 skew-y-[-20deg] card-skew-fix-tl",
       cardClass: "",
-      textClass: "skew-y-[20deg] w-full h-full flex flex-col items-end justify-center",
+      textClass:
+        "skew-y-[20deg] w-full h-full flex flex-col items-end justify-center",
       reverse: false,
     },
     {
@@ -31,9 +33,11 @@ export default function HeroCornerCards() {
       link: `/${i18n.language}/create-cv`,
       linkText: t("hero_cards.resume"),
       subText: t("hero_cards.writing"),
-      positionClass: "top-16 right-16 rounded-tr-3xl border-r-8 skew-y-[20deg] card-skew-fix-tr",
+      positionClass:
+        "top-16 right-16 rounded-tr-3xl border-r-8 skew-y-[20deg] card-skew-fix-tr",
       cardClass: "",
-      textClass: "skew-y-[-20deg] w-full h-full flex flex-col items-center justify-center",
+      textClass:
+        "skew-y-[-20deg] w-full h-full flex flex-col items-center justify-center",
       reverse: false,
     },
     {
@@ -44,9 +48,11 @@ export default function HeroCornerCards() {
       link: `/${i18n.language}/feature3`,
       linkText: t("hero_cards.development"),
       subText: t("hero_cards.training"),
-      positionClass: "-bottom-16 left-16 rounded-bl-3xl border-l-8 skew-y-[20deg] card-skew-fix-bl",
+      positionClass:
+        "-bottom-16 left-16 rounded-bl-3xl border-l-8 skew-y-[20deg] card-skew-fix-bl",
       cardClass: "",
-      textClass: "skew-y-[-20deg] w-full h-full flex flex-col items-center justify-center",
+      textClass:
+        "skew-y-[-20deg] w-full h-full flex flex-col items-center justify-center",
       reverse: true,
     },
     {
@@ -57,9 +63,11 @@ export default function HeroCornerCards() {
       link: `/${i18n.language}/feature4`,
       linkText: t("hero_cards.manage"),
       subText: t("hero_cards.profile"),
-      positionClass: "-bottom-16 right-16 rounded-br-3xl border-r-8 skew-y-[-20deg] card-skew-fix-br",
+      positionClass:
+        "-bottom-16 right-16 rounded-br-3xl border-r-8 skew-y-[-20deg] card-skew-fix-br",
       cardClass: "",
-      textClass: "skew-y-[20deg] w-full h-full flex flex-col items-center justify-center",
+      textClass:
+        "skew-y-[20deg] w-full h-full flex flex-col items-center justify-center",
       reverse: true,
     },
   ];
@@ -100,7 +108,7 @@ export default function HeroCornerCards() {
         <div
           key={idx}
           ref={(el) => (cardRefs.current[idx] = el)}
-          style={{ position: "absolute", inset: 0 }}
+          className="absolute inset-0 hidden lg:block"
         >
           <HeroCornerCard {...card} />
         </div>

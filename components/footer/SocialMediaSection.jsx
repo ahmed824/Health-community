@@ -16,7 +16,7 @@ const iconMap = {
 
 export default function SocialMediaSection() {
   return (
-    <div className="flex items-center space-x-4">
+    <div className="flex items-center justify-center space-x-3 sm:space-x-4">
       {siteConfig.links.social.map((social) => {
         const IconComponent = iconMap[social.icon];
         return (
@@ -25,11 +25,11 @@ export default function SocialMediaSection() {
             href={social.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-12 h-12 rounded-full bg-[#0E6E65] flex items-center justify-center transition-all duration-200 hover:scale-110 hover:bg-white group"
+            className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#0E6E65] flex items-center justify-center transition-all duration-200 hover:scale-110 hover:bg-white group"
             aria-label={`Follow us on ${social.name}`}
             title={social.name}
           >
-            <IconComponent className="w-5 h-5 text-white group-hover:text-primary transition-all duration-200" />
+            <IconComponent className="w-4 h-4 sm:w-5 sm:h-5 text-white group-hover:text-primary transition-all duration-200" />
           </Link>
         );
       })}
