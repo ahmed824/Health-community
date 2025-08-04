@@ -72,6 +72,7 @@ export default function CTASection() {
                 width={20}
                 height={20}
                 className="sm:w-6 sm:h-6"
+                unoptimized
               />
               <span className="text-[#076A60] ml-2 font-semibold text-base sm:text-lg">
                 Available Jobs

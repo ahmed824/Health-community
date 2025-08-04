@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import Link from "next/link";
 import { SwiperSlide, Swiper } from "swiper/react";
 import { Navigation } from "swiper/modules";
+import Button from "../../../components/ui/Button";
 
 const PageLoader = dynamic(() => import("../../../components/ui/PageLoader"), {
   loading: () => <div className="min-h-[400px]"><div className="flex items-center justify-center h-full"><span>Loading...</span></div></div>,

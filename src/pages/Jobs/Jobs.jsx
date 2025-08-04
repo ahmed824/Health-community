@@ -5,6 +5,7 @@ import JobCard from "../../../components/layout/JobCard";
 import Button from "../../../components/ui/Button";
 import Link from "next/link";
 import Filter from "../../../components/layout/Filter";
+import { useTranslation } from "react-i18next";
 
 const doctors = [
   {
@@ -119,6 +120,16 @@ const allCities = [
 ];
 
 export default function Jobs() {
+  const { i18n } = useTranslation();
+  
+  // Create localized doctors array with language prefix
+  const localizedDoctors = useMemo(() => {
+    return doctors.map(doctor => ({
+      ...doctor,
+      link: `/${i18n.language}${doctor.link}`,
+    }));
+  }, [i18n.language]);
+
   const [filter, setFilter] = useState({
     search: "",
     specialty: "",
@@ -130,9 +141,9 @@ export default function Jobs() {
   // Extract unique specialties from doctors
   const specialties = useMemo(() => {
     const set = new Set();
-    doctors.forEach((d) => set.add(d.specialty));
+    localizedDoctors.forEach((d) => set.add(d.specialty));
     return [{ value: "", label: "Medical Specialty" }, ...Array.from(set).map(s => ({ value: s, label: s }))];
-  }, []);
+  }, [localizedDoctors]);
 
   // Filter cities based on selected country
   const filteredCities = useMemo(() => {
@@ -142,7 +153,7 @@ export default function Jobs() {
 
   // Filtering logic
   const filteredDoctors = useMemo(() => {
-    return doctors.filter((doctor) => {
+    return localizedDoctors.filter((doctor) => {
       const matchesSearch =
         !filter.search ||
         doctor.name.toLowerCase().includes(filter.search.toLowerCase()) ||
@@ -156,7 +167,7 @@ export default function Jobs() {
         (filter.mode === "in-person" && !doctor.remotely);
       return matchesSearch && matchesSpecialty && matchesMode;
     });
-  }, [filter]);
+  }, [filter, localizedDoctors]);
 
   // Handle filter change, reset city if country changes
   const handleFilterChange = (newFilter) => {

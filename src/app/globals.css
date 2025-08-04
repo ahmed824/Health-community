@@ -946,3 +946,7 @@ body[data-scroll-locked] {
     padding: 12px 0px !important ;
   }
 }
+.blog-swiper {
+  padding:14px 10px !important;
+}
+ 

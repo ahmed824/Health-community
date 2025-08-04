@@ -2,7 +2,7 @@
 import { useParams } from "next/navigation";
 import { useState, useEffect } from "react";
 import { doctors } from "@/lib/jobsData";
-import JobPage from "../../../pages/Jobs/JobPage";
+import JobPage from "@/pages/Jobs/JobPage";
 
 export default function JobPageContainer() {
   const params = useParams();
