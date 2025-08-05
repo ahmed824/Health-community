@@ -5,6 +5,7 @@ import {
   FaBriefcase,
   FaGraduationCap,
   FaLaptopCode,
+  FaEye,
 } from "react-icons/fa";
 import dynamic from "next/dynamic";
 
@@ -14,7 +15,12 @@ import { useStepNavigation } from "./hooks/useStepNavigation";
 import { usePDFDownload } from "./hooks/usePDFDownload";
 
 // Import constants
-import { countries, allCities, countryCityMap, stepperSteps } from "./constants/cvConstants";
+import {
+  countries,
+  allCities,
+  countryCityMap,
+  stepperSteps,
+} from "./constants/cvConstants";
 
 // Import components
 import CVBuilderHeader from "./components/CVBuilderHeader";
@@ -37,6 +43,7 @@ import { isFormValid } from "./components/cvUtils";
 const BuildCV = () => {
   const cvRef = useRef();
   const [showSuccess, setShowSuccess] = useState(false);
+  const [showPreview, setShowPreview] = useState(false); // State for preview visibility
 
   // Use custom hooks
   const {
@@ -103,16 +110,16 @@ const BuildCV = () => {
   };
 
   // Add icons to stepper steps
-  const stepsWithIcons = stepperSteps.map(step => ({
+  const stepsWithIcons = stepperSteps.map((step) => ({
     ...step,
     icon: iconMap[step.icon],
   }));
 
   return (
     <>
-      <div className="min-h-screen">
+      <div className="min-h-screen relative">
         <CVBuilderHeader />
-        
+
         <div className="mx-auto">
           <div className="container">
             <CVStepper step={step} steps={stepsWithIcons} />
@@ -121,9 +128,17 @@ const BuildCV = () => {
           <ATSBanner />
 
           <div className="container">
-            <div className="flex justify-center gap-8 items-start mt-16">
+            <div className="flex justify-center flex-col md:flex-row gap-8 items-start mt-16 relative">
+              {/* Preview Toggle Button */}
+              <button
+                onClick={() => setShowPreview(!showPreview)}
+                className="fixed top-1/2 right-0 z-50 transform -translate-y-1/2 bg-[#076A60] text-white p-3 rounded-l-lg shadow-lg hover:bg-[#055a52] transition-colors md:hidden"
+              >
+                <FaEye className="w-6 h-6" />
+              </button>
+
               {/* Step Form */}
-              <div className="w-full h-fit mb-8">
+              <div className="w-full h-fit mt-10 mb-8">
                 <StepFormContainer
                   step={step}
                   cvData={cvData}
@@ -170,18 +185,30 @@ const BuildCV = () => {
               </div>
 
               {/* CV Preview */}
-              <CVPreviewSection
-                cvData={cvData}
-                downloadPDF={downloadPDF}
-                isGenerating={isGenerating}
-                isFormValid={isFormValid(cvData)}
-                cvRef={cvRef}
-              />
+              <div
+                className={`fixed top-0 right-0 h-full w-full bg-white shadow-xl transform transition-transform duration-300 ${
+                  showPreview ? "translate-x-0" : "translate-x-full"
+                } md:translate-x-0 md:static md:block z-40 `}
+              >
+                <CVPreviewSection
+                  cvData={cvData}
+                  downloadPDF={downloadPDF}
+                  isGenerating={isGenerating}
+                  isFormValid={isFormValid(cvData)}
+                  cvRef={cvRef}
+                />
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <SuccessDialog open={showSuccess} onClose={setShowSuccess} />
+      <SuccessDialog
+        downloadPDF={downloadPDF}
+        isGenerating={isGenerating}
+        cvData={cvData}
+        open={showSuccess}
+        onClose={setShowSuccess}
+      />
     </>
   );
 };

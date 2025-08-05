@@ -4,6 +4,7 @@ import React from "react";
 import { FaExternalLinkAlt } from "react-icons/fa";
 import Image from "next/image";
 import dynamic from "next/dynamic";
+
 const ImagePreviewModal = dynamic(() => import("./ImagePreviewModal"), {
   ssr: false,
 });
@@ -42,17 +43,19 @@ const CVPreview = ({
         {isFormValid && (
           <>
             <header className="flex cv-header flex-col sm:flex-row items-start sm:items-center mb-4 pb-2 border-b-2 gap-4 border-[#323332]">
-              {/* Profile Photo */}
-              {cvData.personalInfo.photoPreview && (
-                <Image
-                  src={cvData.personalInfo.photoPreview}
-                  alt="Profile"
-                  width={96}
-                  height={96}
-                  className="object-cover w-24 h-24 rounded-full border-2 border-gray-300 shadow mr-4 mb-2 sm:mb-0 bg-white"
-                  unoptimized
-                />
-              )}
+              <div className="flex">
+                {/* Profile Photo */}
+                {cvData.personalInfo.photoPreview && (
+                  <Image
+                    src={cvData.personalInfo.photoPreview}
+                    alt="Profile"
+                    width={96}
+                    height={96}
+                    className="object-cover w-24 h-24 rounded-full mr-4 mb-2 sm:mb-0 bg-white"
+                    unoptimized
+                  />
+                )}
+              </div>
               <div className="flex-1">
                 <h1 className="text-3xl font-bold mb-1 text-black">
                   {cvData.personalInfo.fullName || "Your Name"}

@@ -16,7 +16,7 @@
   --ring: #076a60;
   --radius: 0.5rem;
   --backdrop-blur: 12px;
-} 
+}
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -76,8 +76,8 @@ body {
   color: var(--foreground);
   font-family: var(--font-petrona), system-ui, sans-serif;
   line-height: 1.6;
-  padding:0;
-  margin:0;
+  padding: 0;
+  margin: 0;
   overflow-x: hidden !important;
 }
 
@@ -355,72 +355,72 @@ ul[class^="ring"] li {
     height: 14em;
     font-size: 0.85em;
   }
-  
+
   .ring-0 {
     width: 16em;
     height: 16em;
   }
-  
+
   .ring-0 > *:nth-of-type(1) {
     transform: rotate(90deg) translate(8em) rotate(-90deg);
   }
   .ring-0 > *:nth-of-type(2) {
     transform: rotate(270deg) translate(8em) rotate(-270deg);
   }
-  
+
   .ring-1 {
     width: 11em;
     height: 11em;
   }
-  
+
   .ring-1 > *:nth-of-type(1) {
     transform: rotate(45deg) translate(5.5em) rotate(-45deg);
   }
   .ring-1 > *:nth-of-type(2) {
     transform: rotate(225deg) translate(5.5em) rotate(-225deg);
   }
-  
+
   .ring-2 {
     width: 7em;
     height: 7em;
   }
-  
+
   .ring-2 > *:nth-of-type(1) {
     transform: rotate(0deg) translate(3.5em) rotate(0deg);
   }
   .ring-2 > *:nth-of-type(2) {
     transform: rotate(180deg) translate(3.5em) rotate(-180deg);
   }
-  
+
   ul[class^="ring"] li {
     width: 2.8em;
     height: 2.8em;
     margin: -1.4em;
   }
-  
+
   .orbit-center {
     font-size: 1.2em;
     line-height: 1.5em;
   }
-  
+
   .orbit-center__img {
     width: 80px;
     height: 80px;
   }
-  
+
   /* Slower animation on mobile for better performance */
   .ring-0 {
     animation: clockwiseRotate 30s linear infinite;
   }
-  
+
   .ring-1 {
     animation: clockwiseRotate 24s linear infinite;
   }
-  
+
   .ring-2 {
     animation: clockwiseRotate 18s linear infinite;
   }
-  
+
   /* Responsive orbit-img for mobile */
   .orbit-img {
     width: 32px !important;
@@ -436,59 +436,59 @@ ul[class^="ring"] li {
     height: 12em;
     font-size: 0.75em;
   }
-  
+
   .ring-0 {
     width: 14em;
     height: 14em;
   }
-  
+
   .ring-0 > *:nth-of-type(1) {
     transform: rotate(90deg) translate(7em) rotate(-90deg);
   }
   .ring-0 > *:nth-of-type(2) {
     transform: rotate(270deg) translate(7em) rotate(-270deg);
   }
-  
+
   .ring-1 {
     width: 9em;
     height: 9em;
   }
-  
+
   .ring-1 > *:nth-of-type(1) {
     transform: rotate(45deg) translate(4.5em) rotate(-45deg);
   }
   .ring-1 > *:nth-of-type(2) {
     transform: rotate(225deg) translate(4.5em) rotate(-225deg);
   }
-  
+
   .ring-2 {
     width: 6em;
     height: 6em;
   }
-  
+
   .ring-2 > *:nth-of-type(1) {
     transform: rotate(0deg) translate(3em) rotate(0deg);
   }
   .ring-2 > *:nth-of-type(2) {
     transform: rotate(180deg) translate(3em) rotate(-180deg);
   }
-  
+
   ul[class^="ring"] li {
     width: 2.4em;
     height: 2.4em;
     margin: -1.2em;
   }
-  
+
   .orbit-center {
     font-size: 1em;
     line-height: 1.3em;
   }
-  
+
   .orbit-center__img {
     width: 60px;
     height: 60px;
   }
-  
+
   /* Responsive orbit-img for extra small mobile */
   .orbit-img {
     width: 28px !important;
@@ -503,59 +503,59 @@ ul[class^="ring"] li {
     height: 22em;
     font-size: 1.15em;
   }
-  
+
   .ring-0 {
     width: 24em;
     height: 24em;
   }
-  
+
   .ring-0 > *:nth-of-type(1) {
     transform: rotate(90deg) translate(12em) rotate(-90deg);
   }
   .ring-0 > *:nth-of-type(2) {
     transform: rotate(270deg) translate(12em) rotate(-270deg);
   }
-  
+
   .ring-1 {
     width: 17em;
     height: 17em;
   }
-  
+
   .ring-1 > *:nth-of-type(1) {
     transform: rotate(45deg) translate(8.5em) rotate(-45deg);
   }
   .ring-1 > *:nth-of-type(2) {
     transform: rotate(225deg) translate(8.5em) rotate(-225deg);
   }
-  
+
   .ring-2 {
     width: 11em;
     height: 11em;
   }
-  
+
   .ring-2 > *:nth-of-type(1) {
     transform: rotate(0deg) translate(5.5em) rotate(0deg);
   }
   .ring-2 > *:nth-of-type(2) {
     transform: rotate(180deg) translate(5.5em) rotate(-180deg);
   }
-  
+
   ul[class^="ring"] li {
     width: 4.5em;
     height: 4.5em;
     margin: -2.25em;
   }
-  
+
   .orbit-center {
     font-size: 1.8em;
     line-height: 2em;
   }
-  
+
   .orbit-center__img {
     width: 140px;
     height: 140px;
   }
-  
+
   /* Responsive orbit-img for tablet */
   .orbit-img {
     width: 40px !important;
@@ -947,6 +947,12 @@ body[data-scroll-locked] {
   }
 }
 .blog-swiper {
-  padding:14px 10px !important;
+  padding: 14px 10px !important;
 }
- 
+.bg-custom-gradient {
+  background-image: linear-gradient(
+    230.73deg,
+    rgba(7, 106, 96, 0.08) 15.34%,
+    rgba(7, 106, 96, 0) 75.05%
+  );
+}

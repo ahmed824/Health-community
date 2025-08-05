@@ -8,7 +8,8 @@ import DecorativeGradientCircle from "../../../../components/ui/DecorativeGradie
 import CustomSwiperNav from "../../../../components/layout/CustomSwiperNav";
 import { useRef } from "react";
 import JobCard from "../../../../components/layout/JobCard";
-
+import { useTranslation } from "react-i18next";
+ 
 const jobs = [
   {
     image: "/images/doctors/img1.png",
@@ -49,6 +50,8 @@ const jobs = [
 export default function CTASection() {
   const prevRef = useRef(null);
   const nextRef = useRef(null);
+  const { i18n } = useTranslation();
+
   // Handler to update navigation after refs are set
   const handleSwiper = (swiper) => {
     if (swiper.params.navigation) {
@@ -93,7 +96,7 @@ export default function CTASection() {
                 variant="outline"
                 className="border-[#076A60] text-[#076A60] hover:bg-[#076A60] hover:text-white text-sm sm:text-base px-6 sm:px-8 py-2 sm:py-3"
               >
-                <Link href="/jobs">Explore All</Link>
+                <Link href={`${i18n.language}/jobs`}>Explore All</Link>
               </Button>
             </div>
           </div>

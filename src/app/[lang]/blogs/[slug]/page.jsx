@@ -171,7 +171,7 @@ export default function BlogPage() {
         <BlogHeaderSection blog={blog} />
 
         {/* Main Content Section */}
-        <div className="flex flex-col lg:flex-row gap-8">
+        <div className="flex flex-col lg:flex-row gap-8 justify-between">
           {/* Left: Blog Content */}
           <BlogContentSection blog={blog} />
           {/* Right: Sidebar */}

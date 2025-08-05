@@ -115,7 +115,7 @@ export default function BlogSidebarSection() {
         </div>
       </div>
 
-      {/* Newsletter Signup */}
+      {/* Newsletter Signup
       <div className="bg-gradient-to-br from-primary to-primary/80 rounded-xl p-6 text-white">
         <h3 className="text-xl font-bold mb-3">Stay Updated</h3>
         <p className="text-white/90 text-sm mb-4">
@@ -131,7 +131,7 @@ export default function BlogSidebarSection() {
             Subscribe
           </button>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 } 

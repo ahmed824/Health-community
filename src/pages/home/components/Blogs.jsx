@@ -10,35 +10,13 @@ import { FaRegCalendarDays } from "react-icons/fa6";
 import Button from "../../../../components/ui/Button";
 import { DotsLoader, SkeletonLoader } from "../../../../components/ui";
 import { SlArrowRightCircle } from "react-icons/sl";
-
-const blogs = [
-  {
-    date: "13 May 2025",
-    title:
-      "Demo Title Of This Blog Written In Two Lines .Blog Written In Two Lines ",
-    image: "/images/hand.png",
-    link: "/blog/1",
-  },
-  {
-    date: "13 May 2025",
-    title:
-      "Demo Title Of This Blog Written In Two Lines Blog Written In Two Lines",
-    image: "/images/hand.png",
-    link: "/blog/1",
-  },
-  {
-    date: "13 May 2025",
-    title:
-      "Demo Title Of This Blog Written In Two Lines .Blog Written In Two Lines",
-    image: "/images/hand.png",
-    link: "/blog/1",
-  },
-];
+import { useTranslation } from "react-i18next";
 
 export default function Blogs() {
   const prevRef = useRef(null);
   const nextRef = useRef(null);
   const [isLoading, setIsLoading] = useState(true);
+  const { i18n } = useTranslation();
 
   useEffect(() => {
     // Simulate loading time for blogs
@@ -58,6 +36,30 @@ export default function Blogs() {
       swiper.navigation.update();
     }
   };
+
+  const blogs = [
+    {
+      date: "13 May 2025",
+      title:
+        "Demo Title Of This Blog Written In Two Lines .Blog Written In Two Lines ",
+      image: "/images/hand.png",
+      link: `${i18n.language}/blogs/1`,
+    },
+    {
+      date: "13 May 2025",
+      title:
+        "Demo Title Of This Blog Written In Two Lines Blog Written In Two Lines",
+      image: "/images/hand.png",
+      link: `${i18n.language}/blogs/2`,
+    },
+    {
+      date: "13 May 2025",
+      title:
+        "Demo Title Of This Blog Written In Two Lines .Blog Written In Two Lines",
+      image: "/images/hand.png",
+      link: `${i18n.language}/blogs/3`,
+    },
+  ];
 
   return (
     <section className="py-16 sm:py-20 md:py-24 lg:py-32 relative">
@@ -113,10 +115,10 @@ export default function Blogs() {
                   prevEl: prevRef.current,
                   nextEl: nextRef.current,
                 }}
-                pagination={{ 
+                pagination={{
                   clickable: true,
                   dynamicBullets: true,
-                  dynamicMainBullets: 3
+                  dynamicMainBullets: 3,
                 }}
                 loop
                 effect={"cards"}
@@ -180,7 +182,7 @@ export default function Blogs() {
               variant="outline"
               className="border-[#076A60] text-[#076A60] hover:bg-[#076A60] hover:text-white text-sm sm:text-base px-4 sm:px-6 py-2 sm:py-3"
             >
-              <Link href="/blogs">Explore All</Link>
+              <Link href={`${i18n.language}/blogs`}>Explore All</Link>
             </Button>
           </div>
         </div>

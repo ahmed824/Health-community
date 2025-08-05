@@ -3,7 +3,7 @@ import React from "react";
 import dynamic from "next/dynamic";
 
 const BreadCramp = dynamic(
-  () => import("../../../components/layout/BreadCramp"),
+  () => import("../../../../components/layout/BreadCramp"),
   { ssr: false }
 );
 
@@ -27,4 +27,4 @@ const CVBuilderHeader = () => {
   );
 };
 
-export default CVBuilderHeader; 
+export default CVBuilderHeader;
