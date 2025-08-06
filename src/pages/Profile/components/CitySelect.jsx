@@ -8,15 +8,23 @@ import {
   SelectItem,
 } from "@/components/ui/select";
 
-export default function CitySelect({ value, onChange, error, cities }) {
+export default function CitySelect({
+  value,
+  onChange,
+  error,
+  cities,
+  label = true,
+}) {
   return (
     <div className="w-full space-y-1 group focus-within:text-primary">
-      <label
-        htmlFor="city"
-        className="block text-[16px] font-medium mb-1 transition-colors capitalize text-[#617a78] group-focus-within:text-primary"
-      >
-        City
-      </label>
+      {label && (
+        <label
+          htmlFor="city"
+          className="block text-[16px] font-medium mb-1 transition-colors capitalize text-[#617a78] group-focus-within:text-primary"
+        >
+          City
+        </label>
+      )}
       <div className="relative mb-8">
         <span className="absolute left-3 top-1/2 pl-3 -translate-y-1/2 text-[#617A78] pointer-events-none">
           <FaCity />
@@ -43,4 +51,4 @@ export default function CitySelect({ value, onChange, error, cities }) {
       {error && <p className="text-xs text-red-500 mt-1">{error}</p>}
     </div>
   );
-} 
+}

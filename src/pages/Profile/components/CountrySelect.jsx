@@ -8,15 +8,23 @@ import {
   SelectItem,
 } from "@/components/ui/select";
 
-export default function CountrySelect({ value, onChange, error, countries }) {
+export default function CountrySelect({
+  value,
+  onChange,
+  error,
+  countries,
+  label = true, // default to true
+}) {
   return (
     <div className="w-full space-y-1 group focus-within:text-primary">
-      <label
-        htmlFor="country"
-        className="block text-[16px] font-medium mb-1 transition-colors capitalize text-[#617a78] group-focus-within:text-primary"
-      >
-        Country
-      </label>
+      {label && (
+        <label
+          htmlFor="country"
+          className="block text-[16px] font-medium mb-1 transition-colors capitalize text-[#617a78] group-focus-within:text-primary"
+        >
+          Country
+        </label>
+      )}
       <div className="relative mb-8">
         <span className="absolute left-3 top-1/2 pl-3 -translate-y-1/2 text-[#617A78] pointer-events-none">
           <MdLocationOn />
@@ -36,11 +44,11 @@ export default function CountrySelect({ value, onChange, error, countries }) {
                 <SelectItem key={country.value} value={country.value}>
                   {country.label}
                 </SelectItem>
-            ))}
+              ))}
           </SelectContent>
         </Select>
       </div>
       {error && <p className="text-xs text-red-500 mt-1">{error}</p>}
     </div>
   );
-} 
+}

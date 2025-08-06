@@ -1,23 +1,11 @@
 "use client";
 import React, { useState } from "react";
-import Input from "../../../components/ui/Input";
-import Button from "../../../components/ui/Button";
-import {
-  FaUser,
-  FaEnvelope,
-  FaPhone,
-  FaCalendarAlt,
-  FaCity,
-} from "react-icons/fa";
-import { IoIosUnlock } from "react-icons/io";
-import { RiEyeLine, RiEyeCloseLine } from "react-icons/ri";
+
 import { GoPerson } from "react-icons/go";
-import { TfiReload } from "react-icons/tfi";
-import BagIcon from "../../../components/ui/BagIcon";
-import { GiEarthAfricaEurope } from "react-icons/gi";
-import { MdLocationOn } from "react-icons/md";
+import { useRouter } from "next/navigation";
 import ProfileForm from "./components/ProfileForm";
 import PasswordForm from "./components/PasswordForm";
+import { useTranslation } from "react-i18next";
 
 const countries = [
   { value: "", label: "Select Country" },
@@ -55,6 +43,8 @@ export default function ProfileTab() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [createCVLoading, setCreateCVLoading] = useState(false);
+  const { i18n } = useTranslation();
+  const router = useRouter();
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -131,10 +121,9 @@ export default function ProfileTab() {
   const handleCreateCV = async (e) => {
     e.preventDefault();
     setCreateCVLoading(true);
-    // Simulate async action
     await new Promise((res) => setTimeout(res, 1500));
     setCreateCVLoading(false);
-    alert("Create CV clicked!");
+    router.push(`/${i18n.language}/create-cv`);
   };
 
   return (

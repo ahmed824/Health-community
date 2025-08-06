@@ -1,7 +1,7 @@
 "use client";
 import { useParams } from "next/navigation";
 import { useState, useEffect } from "react";
-import CoursePage from "../../../pages/courses/CoursePage";  
+import CoursePage from "@/pages/courses/CoursePage";  
 
 const doctors = [
   {

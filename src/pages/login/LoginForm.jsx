@@ -5,6 +5,7 @@ import { FaEnvelope } from "react-icons/fa";
 import { IoIosUnlock } from "react-icons/io";
 import { RiEyeCloseLine, RiEyeLine } from "react-icons/ri";
 import Link from "next/link";
+import { useTranslation } from "react-i18next";
 
 export default function LoginForm() {
   const [form, setForm] = useState({
@@ -14,7 +15,7 @@ export default function LoginForm() {
   const [errors, setErrors] = useState({});
   const [submitted, setSubmitted] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-
+  const { i18n } = useTranslation();
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
     setErrors({ ...errors, [e.target.name]: "" });
@@ -64,7 +65,7 @@ export default function LoginForm() {
       />
       <div className="flex flex-col sm:flex-row-reverse justify-between items-center my-5 gap-2">
         <Link
-          href="/forgot-password"
+          href={`/${i18n.language}/forgot-password`}
           className="text-primary text-sm transition-all duration-200 hover:text-[#617A78]"
         >
           Forgot password?
@@ -72,7 +73,7 @@ export default function LoginForm() {
         <div className="text-sm">
           Don't have an account?{" "}
           <Link
-            href="/sign-up"
+            href={`/${i18n.language}/sign-up`}
             className="text-primary transition-all duration-200 hover:text-[#617A78]"
           >
             Create one

@@ -956,3 +956,16 @@ body[data-scroll-locked] {
     rgba(7, 106, 96, 0) 75.05%
   );
 }
+/* Add this to your global CSS file or module */
+@keyframes spin-slow {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.icon-spin {
+  animation: spin-slow 3s linear infinite;
+}

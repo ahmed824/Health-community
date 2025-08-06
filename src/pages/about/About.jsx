@@ -5,8 +5,9 @@ import OrbitAnimation from "../../../components/home/features/OrbitAnimation";
 import FeaturesText from "../../../components/home/features/FeaturesText";
 import Heading from "./components/Heading";
 import CounterCp from "../home/components/Counter";
-import Vision from "./components/Vision";
-import Mission from "./components/Mission";
+import MissionVision from "./components/MissionVision";
+import vision from "../../../public/images/vision.png";
+import mission from "../../../public/images/mission.png";
 
 export default function About() {
   return (
@@ -18,7 +19,7 @@ export default function About() {
         }
         image={"clipboard.png"}
       />
-      <div className="mx-auto container my-10  p-6 ">
+      <div className="mx-auto container my-10 p-6">
         <Heading
           heading={"About Health Community"}
           description={
@@ -45,20 +46,24 @@ export default function About() {
 
       <CounterCp />
 
-      <div className="mx-auto container my-10  p-6 ">
-        <Mission
+      <div className="mx-auto container my-10 p-6">
+        <MissionVision
           heading={"Our Mission"}
           description={
-            "To deliver a professional, seamless recruitment experience that empowers the healthcare sector by connecting skilled professionals with the institutions that need them. "
+            "To deliver a professional, seamless recruitment experience that empowers the healthcare sector by connecting skilled professionals with the institutions that need them."
           }
           subheading={"Building Stronger Healthcare Teams"}
+          direction="left"
+          img={mission}
         />
-        <Vision
+        <MissionVision
           heading={"Our Vision"}
           description={
-            "To deliver a professional, seamless recruitment experience that empowers the healthcare sector by connecting skilled professionals with the institutions that need them. "
+            "To deliver a professional, seamless recruitment experience that empowers the healthcare sector by connecting skilled professionals with the institutions that need them."
           }
           subheading={"Building Stronger Healthcare Teams"}
+          direction="right"
+          img={vision}
         />
       </div>
     </>

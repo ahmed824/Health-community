@@ -1,15 +1,7 @@
 import React from "react";
-import {
-  Table,
-  TableHeader,
-  TableBody,
-  TableRow,
-  TableHead,
-  TableCell,
-} from "../../components/ui/table";
-import { FiDownload } from "react-icons/fi";
-import Link from "next/link";
 import { IoDocumentTextSharp } from "react-icons/io5";
+import CVTable from "./CVTable";
+import CVCard from "./CVCard";
 
 const cvs = [
   {
@@ -33,61 +25,71 @@ const cvs = [
 ];
 
 export default function MyCVsTab() {
+  const handleDownload = (url, fileName) => {
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = fileName;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  const handleView = (url) => {
+    window.open(url, "_blank");
+  };
+
+  const handleEdit = (id) => {
+    console.log(`Edit CV with id: ${id}`);
+    // Example: router.push(`/edit-cv/${id}`);
+  };
+
   return (
-    <div className="w-full mx-auto">
+    <div className="w-full max-w-5xl mx-auto px-4 sm:px-6 md:px-8">
       <div className="flex items-center text-primary gap-3 mb-4">
-        <IoDocumentTextSharp />
-        <h2 className="text-2xl font-semibold ">My CVs</h2>
+        <IoDocumentTextSharp className="text-2xl sm:text-3xl" />
+        <h2 className="text-xl sm:text-2xl font-semibold">My CVs</h2>
       </div>
-      <div className="bg-white border border-[#B7D3D1] rounded-xl p-6 pb-12">
-        <div className="flex items-center justify-between mb-4">
-          <p className="text-[#617A78] font-medium">{cvs.length} CVs</p>
+      <div className="bg-white border border-[#B7D3D1] rounded-xl p-4 sm:p-6 pb-8 sm:pb-12">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+          <p className="text-[#617A78] font-medium text-sm sm:text-base">
+            {cvs.length} CVs
+          </p>
           <button
-            className={`
-              flex items-center gap-2 bg-primary text-white px-4 py-2 rounded-full
-              transition hover:bg-primary/90
-              shadow-[0px_2px_5px_0px_#2264E51F,0px_0px_0px_1px_#2264E5,0px_1px_1px_0px_#00000024,0px_1px_0px_0px_#4B85FA_inset]
-            `}
+            className="flex items-center justify-center gap-2 bg-primary text-white px-3 sm:px-4 py-2 sm:py-2.5 rounded-full transition hover:bg-primary/90 shadow-[0px_2px_5px_0px_#2264E51F,0px_0px_0px_1px_#2264E5,0px_1px_1px_0px_#00000024,0px_1px_0px_0px_#4B85FA_inset] text-sm sm:text-base"
+            aria-label="Create a new CV"
           >
-            <p><span className="text-xl">+</span> Create new CV</p>
+            <span className="text-lg sm:text-xl">+</span>
+            <span className="hidden xs:inline">Create new CV</span>
+            <span className="xs:hidden">Create</span>
           </button>
         </div>
-        <div className="overflow-x-auto">
-          <Table className="min-w-full text-left">
-            <TableHeader>
-              <TableRow className="text-sm text-primary font-semibold border-b border-[#E9EDF5]">
-                <TableHead className="py-2 px-3">#</TableHead>
-                <TableHead className="py-2 px-3">File Name</TableHead>
-                <TableHead className="py-2 px-3">Date Uploaded</TableHead>
-                <TableHead className="py-2 px-3">Action</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody className="text-gray-700 text-sm">
-              {cvs.map((cv, idx) => (
-                <TableRow key={cv.id}>
-                  <TableCell className="py-3 px-3">{idx + 1}</TableCell>
-                  <TableCell className="py-3 px-3 whitespace-nowrap">
-                    <p>{cv.fileName}</p>
-                  </TableCell>
-                  <TableCell className="py-3 px-3 whitespace-nowrap">
-                    <p>{cv.dateUploaded}</p>
-                  </TableCell>
-                  <TableCell className="py-3 px-3">
-                    <Link
-                      href={cv.url}
-                      download
-                      className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium  text-primary transition"
-                    >
-                      <FiDownload className="text-base" />
-                      <span>Download</span>
-                    </Link>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+        <div className="hidden md:block">
+          <CVTable cvs={cvs} handleDownload={handleDownload} handleView={handleView} handleEdit={handleEdit} />
         </div>
+        <div className="md:hidden space-y-4">
+          {cvs.map((cv, idx) => (
+            <CVCard
+              key={cv.id}
+              cv={cv}
+              index={idx}
+              handleDownload={handleDownload}
+              handleView={handleView}
+              handleEdit={handleEdit}
+            />
+          ))}
+        </div>
+        {cvs.length === 0 && (
+          <div className="text-center py-12">
+            <div className="text-gray-400 mb-4">
+              <IoDocumentTextSharp className="mx-auto text-4xl" />
+            </div>
+            <p className="text-gray-500 mb-2">No CVs found</p>
+            <p className="text-sm text-gray-400">
+              Start creating CVs to see them here
+            </p>
+          </div>
+        )}
       </div>
     </div>
   );
-} 
+}

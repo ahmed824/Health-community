@@ -13,7 +13,7 @@ export default function Login() {
         }
         image={"login.png"}
       />
-      <div className="max-w-1/2 mx-auto my-10  p-6 ">
+      <div className="lg:max-w-1/2 w-full mx-auto my-10  p-6 ">
         <LoginForm />
 
        

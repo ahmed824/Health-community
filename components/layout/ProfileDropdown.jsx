@@ -4,9 +4,11 @@ import { useState } from "react";
 import Link from "next/link";
 import { FiChevronDown, FiLogOut, FiSettings } from "react-icons/fi";
 import { GoPerson } from "react-icons/go";
+import { useTranslation } from "react-i18next";
 
 export default function ProfileDropdown() {
   const [isOpen, setIsOpen] = useState(false);
+  const { i18n } = useTranslation();
 
   return (
     <div className="relative">
@@ -23,7 +25,7 @@ export default function ProfileDropdown() {
       {isOpen && (
         <div className="absolute right-0 top-full mt-2 w-48 bg-background/95 backdrop-blur border-[#FFFFFF1A] rounded-lg shadow-lg py-2 z-100 animate-in slide-in-from-top-2 duration-200">
           <Link
-            href="/profile"
+            href={`/${i18n.language}/profile`}
             className="flex items-center space-x-3 px-4 py-2 text-sm text-primary hover:text-foreground hover:bg-accent transition-colors"
             onClick={() => setIsOpen(false)}
           >
