@@ -81,7 +81,7 @@ export default function Filter({
   return (
     <div className="w-full max-w-7xl mx-auto mb-8">
       {/* Main Search Bar - Always visible */}
-      <form onSubmit={handleSubmit} className="flex flex-col gap-4 md:p-6">
+      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <div className="flex gap-2 w-full">
           <div className="flex-1">
             <Input

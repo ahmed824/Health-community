@@ -144,8 +144,8 @@ export default function Hiring() {
           <h2 className="text-2xl font-bold text-primary mb-2">
             Fill in these information To see available positions
           </h2>
-          <div className="flex items-center text-info gap-2 text-base font-medium px-4 py-2 mb-2">
-          <BsInfoCircleFill className="text-primary" />
+          <div className="flex items-center text-info gap-2 text-primary text-xs md:text-base whitespace-nowrap font-bold py-2 mb-2">
+            <BsInfoCircleFill className="text-primary" />
             <span>Your request is sent to the HR of the organization</span>
           </div>
         </div>

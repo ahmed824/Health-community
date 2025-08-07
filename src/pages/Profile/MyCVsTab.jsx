@@ -55,12 +55,11 @@ export default function MyCVsTab() {
             {cvs.length} CVs
           </p>
           <button
-            className="flex items-center justify-center gap-2 bg-primary text-white px-3 sm:px-4 py-2 sm:py-2.5 rounded-full transition hover:bg-primary/90 shadow-[0px_2px_5px_0px_#2264E51F,0px_0px_0px_1px_#2264E5,0px_1px_1px_0px_#00000024,0px_1px_0px_0px_#4B85FA_inset] text-sm sm:text-base"
+            className="flex items-center cursor-pointer justify-center gap-2 bg-primary text-white px-3 sm:px-4 py-2 sm:py-2.5 rounded-full transition hover:bg-primary/90 shadow-[0px_2px_5px_0px_#2264E51F,0px_0px_0px_1px_#2264E5,0px_1px_1px_0px_#00000024,0px_1px_0px_0px_#4B85FA_inset] text-sm sm:text-base"
             aria-label="Create a new CV"
           >
             <span className="text-lg sm:text-xl">+</span>
-            <span className="hidden xs:inline">Create new CV</span>
-            <span className="xs:hidden">Create</span>
+            <span className="inline">Create new CV</span>
           </button>
         </div>
         <div className="hidden md:block">

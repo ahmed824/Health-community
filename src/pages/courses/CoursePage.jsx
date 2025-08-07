@@ -78,27 +78,27 @@ export default function CoursePage({ course, otherCourses }) {
         imageClass="bottom-3   w-[300px]   "
         bgImage="/images/colored-bg.png"
       />
-      <div className="container mx-auto ">
+      <div className="container mx-auto px-4 ">
         {/* Header Section */}
         <JobHeaderSection doctor={course} mode="course" />
 
         {/* Main Content Section */}
-        <div className="flex flex-col md:flex-row gap-8">
+        <div className="flex flex-col lg:flex-row gap-8">
           <AboutCourse course={course} />
           <ContactInformation />
         </div>
 
         {/* Bottom Swiper Section */}
-        <div className="mt-12">
-          <h3 className="text-[42px] capitalize font-bold text-primary mb-4">
+        <div className="mt-8 md:mt-12">
+          <h3 className="text-2xl sm:text-3xl md:text-[42px] capitalize font-bold text-primary mb-4">
             explore other courses
           </h3>
-          <div className="flex relative gap-8 overflow-x-auto ">
+          <div className="relative">
             <CustomSwiperNav
               prevRef={prevRef}
               nextRef={nextRef}
-              leftButtonPosition="absolute left-0 top-[40%]"
-              rightButtonPosition="absolute right-0 top-[40%]"
+              leftButtonPosition="absolute left-0 top-[40%] sm:top-[35%]"
+              rightButtonPosition="absolute right-0 top-[40%] sm:top-[35%]"
               leftButtonBg="transparent"
               rightButtonBg="transparent"
               leftButtonBorder="1px solid #076A60"
@@ -113,12 +113,17 @@ export default function CoursePage({ course, otherCourses }) {
             />
             <Swiper
               modules={[Navigation]}
-              spaceBetween={24}
-              slidesPerView={3}
+              spaceBetween={12}
+              slidesPerView={1}
               navigation={{ prevEl: prevRef.current, nextEl: nextRef.current }}
               loop
               onSwiper={handleSwiper}
-              className="job-swiper py-20"
+              breakpoints={{
+                640: { slidesPerView: 2, spaceBetween: 16 },
+                1024: { slidesPerView: 2, spaceBetween: 0 },
+                1400: { slidesPerView: 3, spaceBetween: 24 },
+              }}
+              className="job-swiper py-10 md:py-20"
             >
               {otherCourses.map((job, idx) => (
                 <SwiperSlide key={idx}>
@@ -141,9 +146,9 @@ export default function CoursePage({ course, otherCourses }) {
           </div>
           <Button
             asChild
-            size="lg"
+            size="sm"
             variant="outline"
-            className="border-[#076A60] text-[#076A60] m-auto md:flex w-fit mt-8 hover:bg-[#076A60] hover:text-white"
+            className="border-[#076A60] bg-white text-[#076A60] m-auto md:flex w-fit mt-8 hover:bg-[#076A60] hover:text-white"
           >
             <Link href="/blogs">Explore All</Link>
           </Button>

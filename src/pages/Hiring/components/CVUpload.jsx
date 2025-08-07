@@ -2,8 +2,11 @@ import React from "react";
 import { IoDocumentText } from "react-icons/io5";
 import { FaTrash } from "react-icons/fa";
 import Link from "next/link";
+import { useTranslation } from "react-i18next";
 
 export default function CVUpload({ cvFileName, fileInputRef, handleChange, handleRemoveCV }) {
+  const {i18n} = useTranslation();
+
   return (
     <div className="md:col-span-2">
       <label className="block text-[16px] font-medium mb-1 text-[#617A78]">
@@ -52,7 +55,7 @@ export default function CVUpload({ cvFileName, fileInputRef, handleChange, handl
         <span className="mt-5 text-[16px] text-[#617A78]">
           No CV? No problem — we’ll help you create one.{' '}
           <Link
-            href="/create-cv"
+            href={`/${i18n.language}/create-cv`}
             className="text-primary hover:underline font-bold"
           >
             Start now

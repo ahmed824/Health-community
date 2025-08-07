@@ -20,7 +20,7 @@ export default function HeroCornerCards() {
       subText: t("hero_cards.hiring"), // Translated text
       positionClass:
         "top-16 left-16 rounded-tl-3xl border-l-8 skew-y-[-20deg] card-skew-fix-tl",
-      cardClass: "",
+      cardClass: "items-center",
       textClass:
         "skew-y-[20deg] w-full h-full flex flex-col items-end justify-center",
       reverse: false,
@@ -65,7 +65,7 @@ export default function HeroCornerCards() {
       subText: t("hero_cards.profile"),
       positionClass:
         "-bottom-16 right-16 rounded-br-3xl border-r-8 skew-y-[-20deg] card-skew-fix-br",
-      cardClass: "",
+      cardClass: "items-start mr-0",
       textClass:
         "skew-y-[20deg] w-full h-full flex flex-col items-center justify-center",
       reverse: true,

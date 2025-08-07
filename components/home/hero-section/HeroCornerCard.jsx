@@ -16,7 +16,7 @@ export default function HeroCornerCard({
   reverse,
 }) {
   return (
-    <div className={`pointer-events-auto absolute ${positionClass} w-60 h-[344px] bg-primary ${cardClass} flex flex-col items-center justify-center shadow-lg overflow-visible border-secondary space-y-4`}>
+    <div className={`pointer-events-auto absolute ${positionClass} w-60 h-[344px] bg-primary  flex flex-col justify-center shadow-lg overflow-visible border-secondary space-y-4`}>
       <div className={textClass}>
         <Image
           src={imageSrc}
@@ -25,7 +25,7 @@ export default function HeroCornerCard({
           height={210}
           className={imageClassName}
         />
-        <div className={`flex ${reverse ? 'flex-col-reverse' : 'flex-col'} justify-start h-full gap-[35px] items-${reverse ? 'end' : 'start'} ${reverse ? '-mr-10 mt-28' : '-ml-10 mt-[-56px]'}`}>
+        <div className={`flex ${reverse ? 'flex-col-reverse' : 'flex-col'}  justify-start h-full gap-[35px] items-${reverse ? 'end' : ''} ${reverse ? '-mr-8 mt-28' : '-ml-10 mt-[-90px]'} ${cardClass}`}>
           <span className="text-muted-foreground text-[140px] font-bold w-full text-center mb-2">
             {number}
           </span>

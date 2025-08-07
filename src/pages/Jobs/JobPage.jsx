@@ -1,37 +1,62 @@
-"use client"
+"use client";
 import { useRef } from "react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import { SwiperSlide, Swiper } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import Button from "../../../components/ui/Button";
+import { useTranslation } from "react-i18next";
+
+// Function to encode job ID using Base64
+const encodeJobId = (id) => {
+  return btoa(id);
+};
 
 const PageLoader = dynamic(() => import("../../../components/ui/PageLoader"), {
-  loading: () => <div className="min-h-[400px]"><div className="flex items-center justify-center h-full"><span>Loading...</span></div></div>,
+  loading: () => (
+    <div className="min-h-[400px]">
+      <div className="flex items-center justify-center h-full">
+        <span>Loading...</span>
+      </div>
+    </div>
+  ),
 });
-const SkeletonLoader = dynamic(() => import("../../../components/ui/SkeletonLoader"));
+const SkeletonLoader = dynamic(() =>
+  import("../../../components/ui/SkeletonLoader")
+);
 const JobCard = dynamic(() => import("../../../components/layout/JobCard"), {
-  loading: () => <SkeletonLoader type="card" />, // Use skeleton card for JobCard loading
+  loading: () => <SkeletonLoader type="card" />,
 });
-const BreadCramp = dynamic(() => import("../../../components/layout/BreadCramp"), {
-  loading: () => <PageLoader size="small" />,
-});
+const BreadCramp = dynamic(
+  () => import("../../../components/layout/BreadCramp"),
+  {
+    loading: () => <PageLoader size="small" />,
+  }
+);
 const JobHeaderSection = dynamic(() => import("./JobHeaderSection"), {
   loading: () => <PageLoader size="small" />,
 });
-const CustomSwiperNav = dynamic(() => import("../../../components/layout/CustomSwiperNav"), {
-  loading: () => <PageLoader size="small" />,
-});
+const CustomSwiperNav = dynamic(
+  () => import("../../../components/layout/CustomSwiperNav"),
+  {
+    loading: () => <PageLoader size="small" />,
+  }
+);
 const AboutJobSection = dynamic(() => import("./components/AboutJobSection"), {
   loading: () => <PageLoader size="small" />,
 });
-const JobRequirementsSection = dynamic(() => import("./components/JobRequirementsSection"), {
-  loading: () => <PageLoader size="small" />,
-});
+const JobRequirementsSection = dynamic(
+  () => import("./components/JobRequirementsSection"),
+  {
+    loading: () => <PageLoader size="small" />,
+  }
+);
 
 export default function JobPage({ doctor, otherJobs }) {
   const prevRef = useRef(null);
   const nextRef = useRef(null);
+  const { i18n } = useTranslation();
+
   // Handler to update navigation after refs are set
   const handleSwiper = (swiper) => {
     if (swiper.params.navigation) {
@@ -49,14 +74,12 @@ export default function JobPage({ doctor, otherJobs }) {
   return (
     <>
       <BreadCramp
-        heading={"Job Name"}
-        paragraph={
-          "Cardiologist"
-        }
-        imageClass="bottom-3   w-[300px]   "
+        heading={doctor.jobTitle}
+        paragraph={doctor.specialty}
+        imageClass="bottom-3 w-[300px]"
         bgImage="/images/colored-bg.png"
       />
-      <div className="container mx-auto py-8 px-4 md:px-0">
+      <div className="container mx-auto px-4 ">
         {/* Header Section */}
         <JobHeaderSection doctor={doctor} />
 
@@ -71,7 +94,7 @@ export default function JobPage({ doctor, otherJobs }) {
         {/* Bottom Swiper Section */}
         <div className="mt-12">
           <h3 className="text-[42px] capitalize font-bold text-primary mb-4">
-          explore other jobs
+            Explore Other Jobs
           </h3>
           <div className="flex relative gap-8 overflow-x-auto pb-4">
             <CustomSwiperNav
@@ -98,17 +121,18 @@ export default function JobPage({ doctor, otherJobs }) {
               navigation={{ prevEl: prevRef.current, nextEl: nextRef.current }}
               loop
               onSwiper={handleSwiper}
-              className="job-swiper "
+              className="job-swiper"
             >
               {otherJobs.map((job, idx) => (
                 <SwiperSlide key={idx}>
                   <JobCard
+                    id={job.id}
                     image={job.image}
                     specialty={job.specialty}
-                    title={job.title}
-                    description={job.description}
-                    type={job.type}
-                    posted={job.posted}
+                    title={job.jobTitle}
+                    description={job.details}
+                    type={job.remotely ? "Remote" : "Onsite"}
+                    posted={`${job.fromDate} - ${job.toDate}`}
                     location={job.location}
                     link={job.link}
                     action={
@@ -118,8 +142,12 @@ export default function JobPage({ doctor, otherJobs }) {
                         className="bg-[#076A60] text-white w-full mt-auto transition hover:shadow-lg"
                       >
                         <Link
-                          className="w-full h-full flex items-center justify-center "
-                          href={job.link}
+                          className="w-full h-full flex items-center justify-center"
+                          href={`/${
+                            i18n.language
+                          }/hiring?id=${encodeURIComponent(
+                            encodeJobId(job.id)
+                          )}`}
                         >
                           Apply Now
                         </Link>

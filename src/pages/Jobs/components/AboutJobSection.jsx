@@ -4,7 +4,7 @@ export default function AboutJobSection({ doctor }) {
   return (
     <div className="flex-1 max-w-[55%] bg-white px-8">
       <h2 className="text-[42px] font-bold text-primary mb-4">
-        About This Course
+        About This job
       </h2>
       <div className="flex items-center gap-2 mb-5">
         <img
@@ -13,7 +13,7 @@ export default function AboutJobSection({ doctor }) {
           className="w-7 h-7 rounded-full border"
         />
         <span className="font-bold text-primary text-sm">
-          {doctor.name}
+          {doctor.organization}
         </span>
       </div>
       <p className="text-[#617A78] text-lg leading-7 mb-6">

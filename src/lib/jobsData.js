@@ -1,5 +1,6 @@
 export const doctors = [
   {
+    id: 1,
     name: "Dr. Ahmed Hassan",
     specialty: "Cardiologist",
     image: "/images/doctors/img1.png",
@@ -17,6 +18,7 @@ export const doctors = [
     posted: "2025-07-10 - 2025-07-15",
   },
   {
+    id: 2,
     name: "Dr. Sara Ali",
     specialty: "Dermatologist",
     image: "/images/doctors/img2.png",
@@ -34,6 +36,7 @@ export const doctors = [
     posted: "2025-07-12 - 2025-07-18",
   },
   {
+    id: 3,
     name: "Dr. Omar Youssef",
     specialty: "Pediatrician",
     image: "/images/doctors/img3.png",
@@ -51,6 +54,7 @@ export const doctors = [
     posted: "2025-07-14 - 2025-07-20",
   },
   {
+    id: 4,
     name: "Dr. Ahmed Hassan",
     specialty: "Cardiologist",
     image: "/images/doctors/img1.png",
@@ -68,6 +72,7 @@ export const doctors = [
     posted: "2025-07-10 - 2025-07-15",
   },
   {
+    id: 5,
     name: "Dr. Sara Ali",
     specialty: "Dermatologist",
     image: "/images/doctors/img2.png",
@@ -85,6 +90,7 @@ export const doctors = [
     posted: "2025-07-12 - 2025-07-18",
   },
   {
+    id: 6,
     name: "Dr. Omar Youssef",
     specialty: "Pediatrician",
     image: "/images/doctors/img3.png",

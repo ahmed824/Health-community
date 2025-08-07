@@ -9,42 +9,46 @@ import CustomSwiperNav from "../../../../components/layout/CustomSwiperNav";
 import { useRef } from "react";
 import JobCard from "../../../../components/layout/JobCard";
 import { useTranslation } from "react-i18next";
- 
+
+// Function to encode job ID using Base64
+const encodeJobId = (id) => {
+  return btoa(id);
+};
+
 const jobs = [
   {
+    id: "1",
     image: "/images/doctors/img1.png",
     specialty: "Medical Specialty",
-    title: "Demo Job Title Is Written Here In One Line Or Two",
+    title: "Dermatologist",
     description:
       "It Is A Long Established Fact That A Reader Will Be Distrac The Readable Content. ",
     type: "Part Time",
     posted: "Since 8 Days",
     location: "Country , City",
-    link: "/jobs/1",
   },
   {
+    id: "2",
     image: "/images/doctors/img4.png",
     specialty: "Medical Specialty",
-    title: "Demo Job Title Is Written Here In One Line Or Two",
+    title: "Dermatologist",
     description:
       "It Is A Long Established Fact That A Reader Will Be Distrac The Readable Content.",
     type: "Part Time",
     posted: "Since 8 Days",
     location: "Country , City",
-    link: "/jobs/1",
   },
   {
+    id: "3",
     image: "/images/doctors/img2.png",
     specialty: "Medical Specialty",
-    title: "Demo Job Title Is Written Here In One Line Or Two",
+    title: "Dermatologist",
     description:
       "It Is A Long Established Fact That A Reader Will Be Distrac The Readable Content.",
     type: "Part Time",
     posted: "Since 8 Days",
     location: "Country , City",
-    link: "/jobs/1",
   },
-  // Add more job objects as needed
 ];
 
 export default function CTASection() {
@@ -96,7 +100,7 @@ export default function CTASection() {
                 variant="outline"
                 className="border-[#076A60] text-[#076A60] hover:bg-[#076A60] hover:text-white text-sm sm:text-base px-6 sm:px-8 py-2 sm:py-3"
               >
-                <Link href={`${i18n.language}/jobs`}>Explore All</Link>
+                <Link href={`/${i18n.language}/jobs`}>Explore All</Link>
               </Button>
             </div>
           </div>
@@ -124,12 +128,15 @@ export default function CTASection() {
                   wrapperClassName="my-swiper-nav"
                 />
               </div>
-              
+
               <Swiper
                 modules={[Navigation]}
                 spaceBetween={0}
                 slidesPerView={1}
-                navigation={{ prevEl: prevRef.current, nextEl: nextRef.current }}
+                navigation={{
+                  prevEl: prevRef.current,
+                  nextEl: nextRef.current,
+                }}
                 loop
                 onSwiper={handleSwiper}
                 className="job-swiper"
@@ -137,6 +144,7 @@ export default function CTASection() {
                 {jobs.map((job, idx) => (
                   <SwiperSlide key={idx}>
                     <JobCard
+                      id={job.id}
                       image={job.image}
                       specialty={job.specialty}
                       title={job.title}
@@ -144,7 +152,7 @@ export default function CTASection() {
                       type={job.type}
                       posted={job.posted}
                       location={job.location}
-                      link={job.link}
+                      link={`/${i18n.language}/jobs/${job.title}`}
                       action={
                         <Button
                           variant="outline"
@@ -153,7 +161,7 @@ export default function CTASection() {
                         >
                           <Link
                             className="w-full h-full flex items-center justify-center"
-                            href={job.link}
+                            href={`/${i18n.language}/hiring?id=${encodeURIComponent(encodeJobId(job.id))}`}
                           >
                             Apply Now
                           </Link>
@@ -163,7 +171,7 @@ export default function CTASection() {
                   </SwiperSlide>
                 ))}
               </Swiper>
-              
+
               {/* Mobile navigation dots */}
               <div className="flex justify-center mt-4 sm:hidden">
                 <div className="flex space-x-2">
@@ -179,7 +187,7 @@ export default function CTASection() {
           </div>
         </div>
       </div>
-      
+
       {/* Responsive decorative element */}
       <DecorativeGradientCircle
         positionClass="absolute right-4 sm:right-8 md:right-16 lg:right-52 -z-10 top-16 sm:top-20 md:top-24 lg:top-26 rotate-12 sm:rotate-24 lg:rotate-34"

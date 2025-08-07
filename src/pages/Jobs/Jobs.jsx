@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useState, useMemo } from "react";
 import BreadCramp from "../../../components/layout/BreadCramp";
 import JobCard from "../../../components/layout/JobCard";
@@ -7,13 +7,18 @@ import Link from "next/link";
 import Filter from "../../../components/layout/Filter";
 import { useTranslation } from "react-i18next";
 
+// Function to encode job ID using Base64
+const encodeJobId = (id) => {
+  return btoa(id);
+};
+
 const doctors = [
   {
-    name: "Dr. Ahmed Hassan",
+    id: "1",
+    jobTitle: "Cardiologist Position",
     specialty: "Cardiologist",
     image: "/images/doctors/img1.png",
     details: "Expert in heart diseases and cardiovascular health.",
-    link: "/jobs/ahmed-hassan",
     avatar: "/images/avatar.jpg",
     remotely: true,
     price: 200,
@@ -22,11 +27,11 @@ const doctors = [
     location: "Egypt, Cairo",
   },
   {
-    name: "Dr. Sara Ali",
+    id: "2",
+    jobTitle: "Dermatologist Position",
     specialty: "Dermatologist",
     image: "/images/doctors/img2.png",
     details: "Specialist in skin care and dermatological treatments.",
-    link: "/jobs/sara-ali",
     avatar: "/images/avatar.jpg",
     remotely: false,
     price: 180,
@@ -35,11 +40,11 @@ const doctors = [
     location: "KSA, Riyadh",
   },
   {
-    name: "Dr. Omar Youssef",
+    id: "3",
+    jobTitle: "Pediatrician Position",
     specialty: "Pediatrician",
     image: "/images/doctors/img3.png",
     details: "Caring for children and infants with compassion.",
-    link: "/jobs/omar-youssef",
     avatar: "/images/avatar.jpg",
     remotely: true,
     price: 150,
@@ -48,11 +53,11 @@ const doctors = [
     location: "UAE, Dubai",
   },
   {
-    name: "Dr. Ahmed Hassan",
+    id: "4",
+    jobTitle: "Cardiologist Position",
     specialty: "Cardiologist",
     image: "/images/doctors/img1.png",
     details: "Expert in heart diseases and cardiovascular health.",
-    link: "/jobs/ahmed-hassan",
     avatar: "/images/avatar.jpg",
     remotely: true,
     price: 200,
@@ -61,11 +66,11 @@ const doctors = [
     location: "USA, New York",
   },
   {
-    name: "Dr. Sara Ali",
+    id: "5",
+    jobTitle: "Dermatologist Position",
     specialty: "Dermatologist",
     image: "/images/doctors/img2.png",
     details: "Specialist in skin care and dermatological treatments.",
-    link: "/jobs/sara-ali",
     avatar: "/images/avatar.jpg",
     remotely: false,
     price: 180,
@@ -74,11 +79,11 @@ const doctors = [
     location: "Egypt, Cairo",
   },
   {
-    name: "Dr. Omar Youssef",
+    id: "6",
+    jobTitle: "Pediatrician Position",
     specialty: "Pediatrician",
     image: "/images/doctors/img3.png",
     details: "Caring for children and infants with compassion.",
-    link: "/jobs/omar-youssef",
     avatar: "/images/avatar.jpg",
     remotely: true,
     price: 150,
@@ -97,18 +102,10 @@ const countries = [
 ];
 
 const countryCityMap = {
-  egypt: [
-    { value: "cairo", label: "Cairo" },
-  ],
-  ksa: [
-    { value: "riyadh", label: "Riyadh" },
-  ],
-  uae: [
-    { value: "dubai", label: "Dubai" },
-  ],
-  usa: [
-    { value: "newyork", label: "New York" },
-  ],
+  egypt: [{ value: "cairo", label: "Cairo" }],
+  ksa: [{ value: "riyadh", label: "Riyadh" }],
+  uae: [{ value: "dubai", label: "Dubai" }],
+  usa: [{ value: "newyork", label: "New York" }],
 };
 
 const allCities = [
@@ -121,12 +118,12 @@ const allCities = [
 
 export default function Jobs() {
   const { i18n } = useTranslation();
-  
+
   // Create localized doctors array with language prefix
   const localizedDoctors = useMemo(() => {
-    return doctors.map(doctor => ({
+    return doctors.map((doctor) => ({
       ...doctor,
-      link: `/${i18n.language}${doctor.link}`,
+      link: `/${i18n.language}/jobs/${doctor.specialty}`,
     }));
   }, [i18n.language]);
 
@@ -142,7 +139,10 @@ export default function Jobs() {
   const specialties = useMemo(() => {
     const set = new Set();
     localizedDoctors.forEach((d) => set.add(d.specialty));
-    return [{ value: "", label: "Medical Specialty" }, ...Array.from(set).map(s => ({ value: s, label: s }))];
+    return [
+      { value: "", label: "Medical Specialty" },
+      ...Array.from(set).map((s) => ({ value: s, label: s })),
+    ];
   }, [localizedDoctors]);
 
   // Filter cities based on selected country
@@ -156,16 +156,28 @@ export default function Jobs() {
     return localizedDoctors.filter((doctor) => {
       const matchesSearch =
         !filter.search ||
-        doctor.name.toLowerCase().includes(filter.search.toLowerCase()) ||
+        doctor.jobTitle.toLowerCase().includes(filter.search.toLowerCase()) ||
         doctor.specialty.toLowerCase().includes(filter.search.toLowerCase()) ||
         doctor.details.toLowerCase().includes(filter.search.toLowerCase());
-      const matchesSpecialty = !filter.specialty || doctor.specialty === filter.specialty;
-      // For demo, country/city are not in doctor data, so skip those filters
+      const matchesSpecialty =
+        !filter.specialty || doctor.specialty === filter.specialty;
+      const matchesCountry =
+        !filter.country ||
+        doctor.location.toLowerCase().includes(filter.country.toLowerCase());
+      const matchesCity =
+        !filter.city ||
+        doctor.location.toLowerCase().includes(filter.city.toLowerCase());
       const matchesMode =
         !filter.mode ||
         (filter.mode === "remotely" && doctor.remotely) ||
         (filter.mode === "in-person" && !doctor.remotely);
-      return matchesSearch && matchesSpecialty && matchesMode;
+      return (
+        matchesSearch &&
+        matchesSpecialty &&
+        matchesCountry &&
+        matchesCity &&
+        matchesMode
+      );
     });
   }, [filter, localizedDoctors]);
 
@@ -181,17 +193,15 @@ export default function Jobs() {
   return (
     <>
       <BreadCramp
-        heading={"our Jobs"}
+        heading={"Our Jobs"}
         paragraph={
           "Fill in your details and let us craft a professional resume just for you"
         }
         image={"Job.png"}
-        imageClass="bottom-3   w-[300px]   "
+        imageClass="bottom-3 w-[300px]"
       />
       <div className="container mx-auto py-8 px-16">
-        <h1 className="text-3xl font-bold mb-8 text-primary">
-          find your course
-        </h1>
+        <h1 className="text-3xl font-bold mb-8 text-primary">Find Your Job</h1>
         <Filter
           filter={filter}
           onChange={handleFilterChange}
@@ -208,9 +218,10 @@ export default function Jobs() {
             filteredDoctors.map((doctor, idx) => (
               <JobCard
                 key={idx}
+                id={doctor.id}
                 image={doctor.image}
                 specialty={doctor.specialty}
-                title={doctor.name}
+                title={doctor.jobTitle}
                 description={doctor.details}
                 type={doctor.remotely ? "Remote" : "Onsite"}
                 posted={`${doctor.fromDate} - ${doctor.toDate}`}
@@ -223,8 +234,10 @@ export default function Jobs() {
                     className="bg-[#076A60] text-white w-full mt-auto transition hover:shadow-lg"
                   >
                     <Link
-                      className="w-full h-full flex items-center justify-center "
-                      href={doctor.link}
+                      className="w-full h-full flex items-center justify-center"
+                      href={`/${i18n.language}/hiring?id=${encodeURIComponent(
+                        encodeJobId(doctor.id)
+                      )}`}
                     >
                       Apply Now
                     </Link>

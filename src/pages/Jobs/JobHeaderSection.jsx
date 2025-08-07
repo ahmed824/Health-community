@@ -1,23 +1,25 @@
 import { TbCalendarStats } from "react-icons/tb";
 import { Reyal } from "../../../components/layout";
+import { IoStatsChartOutline } from "react-icons/io5";
 
 export default function JobHeaderSection({ doctor, mode = "job" }) {
   const isJob = mode === "job";
   const isCourse = mode === "course";
 
   return (
-    <div className="bg-white -mt-45 relative shadow-[0_0_35px_0_#076A6012] p-6 py-20 rounded-sm flex flex-col md:flex-row justify-between gap-6 mb-18">
-      <div className="flex-1 flex flex-col justify-center md:flex-row gap-8">
+    <div className="bg-white -mt-8 sm:-mt-12 md:-mt-38 relative shadow-[0_0_20px_0_#076A6012] sm:shadow-[0_0_25px_0_#076A6012] md:shadow-[0_0_35px_0_#076A6012] p-4 sm:p-6 md:p-8 py-8 sm:py-12 md:py-16 rounded-sm flex flex-col md:flex-row justify-between gap-4 sm:gap-6 mb-8 sm:mb-12 md:mb-18">
+      <div className="flex-1 flex flex-col md:flex-row gap-0 sm:gap-1 md:gap-2 lg:gap-18 justify-center">
         {/* Specialty */}
-        <div className="flex flex-col gap-2 min-w-[180px]">
-          <p className="text-[#617A78] capitalize flex items-center gap-2">
-            <span className="material-icons text-base">
+        <div className="flex flex-col gap-2 w-fit px-2 sm:px-3 md:px-4">
+          <p className="text-[#617A78] capitalize flex items-center gap-2 text-sm sm:text-base">
+            <span className="material-icons text-sm sm:text-base">
               <svg
-                width="14"
-                height="16"
+                width="12"
+                height="14"
                 viewBox="0 0 14 16"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
+                className="w-3 h-3 sm:w-3.5 sm:h-4 md:w-4 md:h-4"
               >
                 <path
                   fillRule="evenodd"
@@ -29,29 +31,52 @@ export default function JobHeaderSection({ doctor, mode = "job" }) {
             </span>{" "}
             Specialty
           </p>
-          <span className="font-bold text-xl capitalize text-primary">
+          <span className="font-bold text-base sm:text-lg md:text-xl capitalize text-primary">
             {doctor.specialty}
           </span>
         </div>
+        {/* Level */}
+        {isJob && (
+          <div className="flex flex-col gap-2 w-fit px-2 sm:px-3 md:px-4">
+            <p className="text-[#617A78] capitalize flex items-center gap-2 text-sm sm:text-base">
+              <IoStatsChartOutline className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
+              Level
+            </p>
+            <span className="font-bold ml-2 text-base sm:text-lg md:text-xl capitalize text-primary">
+              {doctor.level || "mid level"}
+            </span>
+          </div>
+        )}
         {/* License */}
-        <div className="flex flex-col gap-2 min-w-[180px]">
-          <p className="text-[#617A78] capitalize flex items-center  gap-2">
-            <span className="material-icons text-base">
-              <Reyal fill={"#617A78"} height="23" width="20" />
+        <div className="flex flex-col gap-2 w-fit px-2 sm:px-3 md:px-4">
+          <p className="text-[#617A78] capitalize flex items-center gap-2 text-sm sm:text-base">
+            <span className="material-icons text-sm sm:text-base">
+              <Reyal
+                fill={"#617A78"}
+                height="18"
+                width="16"
+                className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6"
+              />
             </span>{" "}
             License
           </p>
-          <span className="font-bold ml-2 text-xl capitalize text-primary">
+          <span className="font-bold ml-2 text-base sm:text-lg md:text-xl capitalize text-primary">
             {isCourse ? doctor.price : "N/A"}
           </span>
         </div>
         {/* Mode */}
-        <div className="flex flex-col gap-2 min-w-[180px]">
-          <p className="text-[#617A78] capitalize flex items-center gap-2">
-            <span className="text-base">
+        <div className="flex flex-col gap-2 w-fit px-2 sm:px-3 md:px-4">
+          <p className="text-[#617A78] capitalize flex items-center gap-2 text-sm sm:text-base">
+            <span className="text-sm sm:text-base">
               {doctor.remotely ? (
                 // Remote: Use a laptop icon
-                <svg width="18" height="18" fill="none" viewBox="0 0 20 20">
+                <svg
+                  width="14"
+                  height="14"
+                  fill="none"
+                  viewBox="0 0 20 20"
+                  className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-4.5 md:h-4.5"
+                >
                   <rect
                     x="3"
                     y="5"
@@ -72,7 +97,13 @@ export default function JobHeaderSection({ doctor, mode = "job" }) {
                 </svg>
               ) : (
                 // Onsite: Use an office/building icon
-                <svg width="18" height="18" fill="none" viewBox="0 0 20 20">
+                <svg
+                  width="14"
+                  height="14"
+                  fill="none"
+                  viewBox="0 0 20 20"
+                  className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-4.5 md:h-4.5"
+                >
                   <rect
                     x="4"
                     y="3"
@@ -91,7 +122,7 @@ export default function JobHeaderSection({ doctor, mode = "job" }) {
             </span>
             Mode
           </p>
-          <span className="font-bold text-xl ml-1 capitalize text-primary">
+          <span className="font-bold text-base sm:text-lg md:text-xl ml-1 capitalize text-primary">
             {isCourse || isJob
               ? doctor.remotely
                 ? "Remotely"
@@ -100,14 +131,14 @@ export default function JobHeaderSection({ doctor, mode = "job" }) {
           </span>
         </div>
         {/* Start – End Dates */}
-        <div className="flex flex-col gap-2 min-w-[220px]">
-          <p className="text-[#617A78] capitalize flex items-center gap-2">
-            <span className="material-icons text-base">
-              <TbCalendarStats />
+        <div className="flex flex-col gap-2 w-fit px-2 sm:px-3 md:px-4">
+          <p className="text-[#617A78] capitalize flex items-center gap-2 whitespace-nowrap text-sm sm:text-base">
+            <span className="material-icons text-sm sm:text-base">
+              <TbCalendarStats className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
             </span>{" "}
             Start – End Dates
           </p>
-          <span className="font-bold text-xl capitalize text-primary">
+          <span className="font-bold text-base sm:text-lg md:text-xl capitalize text-primary">
             {isCourse
               ? `${doctor.startDate} – ${doctor.endDate}`
               : isJob
